@@ -251,3 +251,38 @@ details p { color: var(--muted); margin: .8rem 0 0; max-width: 66ch; }
   html { scroll-behavior: auto; }
   * { transition: none !important; }
 }
+
+/* Trace: one fact, one colour, from YAML to the Containerfile line. */
+.trace-block { margin: 0 0 1.2rem; }
+.label.sub { margin-bottom: 1rem; }
+.trace { border: 1px solid var(--line-soft); background: var(--line-soft); }
+.trace-head, .trace-row { display: grid; grid-template-columns: 1fr 2.2rem 1fr 2.2rem 1.15fr; gap: 0; }
+.trace-head { background: var(--panel); }
+.trace-head span { padding: .6rem 1rem; color: var(--muted); font-size: .68rem; }
+.trace-row { background: var(--ink); border-top: 1px solid var(--line-soft); }
+.trace-row code {
+  display: block; padding: .85rem 1rem; font-family: var(--mono); font-size: .74rem; line-height: 1.55;
+  color: #cfd6d1; white-space: pre-wrap; word-break: break-word; border-left: 2px solid transparent;
+}
+.trace-row .f { display: block; color: var(--muted); font-size: .66rem; letter-spacing: .02em; margin-bottom: .25rem; }
+.trace-row em { color: var(--blue); font-style: normal; }
+.trace-row .arrow { display: flex; align-items: center; justify-content: center; color: var(--muted); font-family: var(--mono); font-size: 1.05rem; }
+.t-blue code { border-left-color: var(--accent); }
+.t-blue code .f { color: var(--accent); }
+.t-green code { border-left-color: var(--green); }
+.t-green code .f { color: var(--green); }
+.t-violet code { border-left-color: var(--violet); }
+.t-violet code .f { color: var(--violet); }
+.t-paper code { border-left-color: var(--line); }
+.trace-end {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: .6rem 1.2rem;
+  border: 1px solid var(--line); border-top: 0; padding: 1rem 1.1rem; background: var(--panel);
+}
+.trace-end strong { font-size: 1.15rem; color: var(--accent); }
+.trace-end .mono { color: var(--muted); }
+@media (max-width: 900px) {
+  .trace-head { display: none; }
+  .trace-row { grid-template-columns: 1fr; }
+  .trace-row .arrow { transform: rotate(90deg); padding: .1rem 0; }
+  .trace-row code { border-left-width: 3px; }
+}
