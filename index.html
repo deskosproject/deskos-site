@@ -84,73 +84,79 @@
         allowed to read.</p>
     </div>
 
-    <ol class="pipe" aria-label="Compilation stages">
-      <li><span class="pipe-k">resources/</span><span class="pipe-v">14 kinds, JSON Schema</span><span class="pipe-o">unknown fields rejected</span></li>
-      <li><span class="pipe-k">compose</span><span class="pipe-v">foundation → organization → role → workstation</span><span class="pipe-o">sets union · keyed must match · scalars by layer</span></li>
-      <li><span class="pipe-k">plan.json</span><span class="pipe-v">plan.deskos.org/v1alpha1</span><span class="pipe-o">canonical order · no timestamps</span></li>
-      <li><span class="pipe-k">ctx/</span><span class="pipe-v">Containerfile · rootfs/ · manifest</span><span class="pipe-o">one writer, from the plan</span></li>
-      <li><span class="pipe-k">image@sha256</span><span class="pipe-v">base pinned by digest</span><span class="pipe-o">signed · SBOM · scanned</span></li>
-    </ol>
-
-    <div class="trace-block">
-      <p class="label sub"><span class="num">↳</span> Trace: the same fact, the same colour</p>
-      <div class="trace" role="table" aria-label="How a resource value reaches the Containerfile">
-        <div class="trace-head mono" role="row">
-          <span role="columnheader">resources/*.yaml</span><span></span>
-          <span role="columnheader">plan.json</span><span></span>
-          <span role="columnheader">ctx/Containerfile</span>
-        </div>
-        <div class="trace-row t-blue" role="row">
-          <code role="cell"><span class="f">platforms/centos-stream-10.yaml</span>
-bootc.image: centos-bootc:stream10
+    <div class="poster">
+      <div class="stage">
+        <p class="stage-label mono">declared intent</p>
+        <div class="src-grid">
+          <article class="src s-blue">
+            <span class="mono file"><span class="tag tag-1">1</span>platforms/centos-stream-10.yaml</span>
+            <code>bootc.image: centos-bootc:stream10
 digest: sha256:98cb9980…</code>
-          <span class="arrow" aria-hidden="true">→</span>
-          <code role="cell"><span class="f">platform.baseImage</span>
-image + digest</code>
-          <span class="arrow" aria-hidden="true">→</span>
-          <code role="cell"><span class="f">FROM</span>
-quay.io/centos-bootc/centos-bootc:stream10
-  <em>@sha256:98cb9980…</em></code>
-        </div>
-        <div class="trace-row t-green" role="row">
-          <code role="cell"><span class="f">workstations/deskos-core-centos-stream-10.yaml</span>
-platformRef: centos-stream-10
-profiles: [deskos-core, deskos-gnome, …]</code>
-          <span class="arrow" aria-hidden="true">→</span>
-          <code role="cell"><span class="f">artifact.packageGroups</span>
-workstation → workstation-product-environment</code>
-          <span class="arrow" aria-hidden="true">→</span>
-          <code role="cell"><span class="f">RUN</span>
-dnf -y group install
-  'workstation-product-environment'</code>
-        </div>
-        <div class="trace-row t-violet" role="row">
-          <code role="cell"><span class="f">desktop/deskos-core.yaml</span>
-shell.extensions: […]
+          </article>
+          <article class="src s-green">
+            <span class="mono file"><span class="tag tag-2">2</span>workstations/…-centos-stream-10.yaml</span>
+            <code>platformRef: centos-stream-10
+profiles: [deskos-core, …]</code>
+          </article>
+          <article class="src s-violet">
+            <span class="mono file"><span class="tag tag-3">3</span>desktop/deskos-core.yaml</span>
+            <code>shell.extensions: […]
 appearance.wallpaper: …</code>
-          <span class="arrow" aria-hidden="true">→</span>
-          <code role="cell"><span class="f">artifact.dconf</span>
-defaults + enabled-extensions</code>
-          <span class="arrow" aria-hidden="true">→</span>
-          <code role="cell"><span class="f">rootfs/etc/dconf/db/distro.d/</span>
-50-deskos
-→ dconf update</code>
-        </div>
-        <div class="trace-row t-paper" role="row">
-          <code role="cell"><span class="f">software/*.yaml (PackageSet)</span>
-packages: [firefox, flatpak, …]</code>
-          <span class="arrow" aria-hidden="true">→</span>
-          <code role="cell"><span class="f">artifact.packages</span>
-sorted, deduplicated</code>
-          <span class="arrow" aria-hidden="true">→</span>
-          <code role="cell"><span class="f">RUN</span>
-dnf -y install firefox flatpak …</code>
+          </article>
+          <article class="src s-paper">
+            <span class="mono file"><span class="tag tag-4">4</span>software/*.yaml</span>
+            <code>packages: [firefox, flatpak, …]</code>
+          </article>
         </div>
       </div>
-      <div class="trace-end">
-        <span class="mono">one plan → one build context</span>
-        <strong>image@sha256</strong>
-        <span class="mono">bootc · signed · SBOM</span>
+
+      <div class="arrow" aria-hidden="true"><span class="mono">compose</span></div>
+
+      <div class="stage">
+        <p class="stage-label mono">one typed plan</p>
+        <div class="compose">
+          <div class="layers" aria-label="Semantic layers, low to high">
+            <span class="layer w4">workstation</span>
+            <span class="layer w3">role</span>
+            <span class="layer w2">organization</span>
+            <span class="layer w1">foundation</span>
+            <span class="layers-note mono">sets union · keyed must match · scalars take the highest layer</span>
+          </div>
+          <div class="plan">
+            <span class="mono file">plan.json</span>
+            <code>plan.deskos.org/v1alpha1
+canonical order
+no timestamps</code>
+          </div>
+        </div>
+      </div>
+
+      <div class="arrow" aria-hidden="true"><span class="mono">render</span></div>
+
+      <div class="stage">
+        <p class="stage-label mono">the only writer</p>
+        <div class="cf">
+          <div class="cf-line"><span class="n mono">1</span><code><em># Generated by deskosctl from plan.json. Do not edit.</em></code><span class="mark m-muted"></span></div>
+          <div class="cf-line"><span class="n mono">2</span><code><b>FROM</b> quay.io/centos-bootc/centos-bootc:stream10<b>@sha256:98cb9980…</b></code><span class="mark m-blue">1</span></div>
+          <div class="cf-line"><span class="n mono">3</span><code><b>RUN</b> … dnf -y group install 'workstation-product-environment'</code><span class="mark m-green">2</span></div>
+          <div class="cf-line"><span class="n mono">4</span><code><b>COPY</b> rootfs/ /   <em># dconf defaults, wallpaper, extensions</em></code><span class="mark m-violet">3</span></div>
+          <div class="cf-line"><span class="n mono">5</span><code><b>RUN</b> … dnf -y install firefox flatpak …</code><span class="mark m-paper">4</span></div>
+          <div class="cf-line"><span class="n mono">6</span><code><b>RUN</b> … bootc container lint</code><span class="mark m-muted"></span></div>
+        </div>
+      </div>
+
+      <div class="arrow" aria-hidden="true"><span class="mono">bootc</span></div>
+
+      <div class="stage">
+        <p class="stage-label mono">one artifact</p>
+        <div class="image">
+          <div class="stack" aria-hidden="true"><i></i><i></i><i></i></div>
+          <div class="image-copy">
+            <strong>image@sha256</strong>
+            <p class="mono">bootc · signed digest · SBOM · scanned</p>
+          </div>
+          <span class="mono image-note">the same plan always produces this one digest</span>
+        </div>
       </div>
     </div>
 
