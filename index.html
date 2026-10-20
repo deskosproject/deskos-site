@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DeskOS — the desktop is compiled</title>
+<meta name="description" content="DeskOS turns declared intent into a typed plan and a bootable container image: packages, desktop defaults, boot, updates and policy, with the same inputs producing the same artifact.">
+<meta name="theme-color" content="#0E1110">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="/" aria-label="DeskOS">
+      <img class="wordmark" src="assets/wordmark.svg" alt="DeskOS" width="148" height="30">
+    </a>
+    <nav aria-label="Main">
+      <ul class="links">
+        <li><a href="#compile">Compile</a></li>
+        <li><a href="#platforms">Platforms</a></li>
+        <li><a href="#install">Install</a></li>
+        <li><a href="#questions">Questions</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn-ghost nav-cta" href="https://github.com/deskosproject/deskos-core">Source</a>
+  </div>
+</header>
+
+<main id="main">
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow">bootc · OCI · deterministic</p>
+      <h1>The desktop<br>is <span class="mark">compiled</span>.</h1>
+      <p class="lede">DeskOS turns declared intent — platform, packages, desktop, policy — into a typed
+        plan and a bootable container image. Same inputs, same artifact. No controller, no fleet,
+        no machine phoning home.</p>
+      <div class="actions">
+        <a class="btn btn-solid" href="#platforms">See the platforms</a>
+        <a class="btn btn-ghost" href="https://github.com/deskosproject/deskos-core/tree/main/docs">Read the docs</a>
+      </div>
+      <p class="note">Apache-2.0 · no account · no telemetry</p>
+    </div>
+
+    <aside class="spec" aria-label="What a compiled workstation looks like">
+      <div class="spec-head">
+        <span class="mono">specimen</span>
+        <span class="dot dot-green" aria-hidden="true"></span>
+      </div>
+      <h2 class="spec-name">deskos-core-centos-stream-10</h2>
+      <dl class="spec-rows">
+        <div><dt>platform</dt><dd>centos-stream-10</dd></div>
+        <div><dt>base</dt><dd class="trunc">centos-bootc@sha256:98cb9980…</dd></div>
+        <div><dt>layers</dt><dd>foundation · role · workstation</dd></div>
+        <div><dt>kinds</dt><dd>14 typed resources</dd></div>
+        <div><dt>output</dt><dd>plan.json + Containerfile</dd></div>
+        <div><dt>image</dt><dd class="ok">published, booted in CI</dd></div>
+      </dl>
+      <p class="spec-foot mono">one plan → one image → one digest</p>
+    </aside>
+  </div>
+
+  <div class="wrap">
+    <dl class="stats">
+      <div><dt>4</dt><dd>platforms</dd></div>
+      <div><dt>14</dt><dd>resource kinds</dd></div>
+      <div><dt>0</dt><dd>controllers</dd></div>
+      <div><dt>0</dt><dd>phone-home</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section id="compile" class="section">
+  <div class="wrap">
+    <p class="label"><span class="num">01</span> Compile</p>
+    <div class="section-grid">
+      <div>
+        <h2 class="h2">Intent in.<br>Artifact out.</h2>
+        <p class="body">A workstation is a set of resources: which platform, which packages, which
+          desktop defaults, which update policy. Layers compose by semantics — foundation, organization,
+          role, workstation — and a value is never decided by file order.</p>
+        <p class="body">The compiler writes a <strong>typed plan</strong> and the build context. Backends
+          read only that plan, so a fact lives in one place and a change is reviewable.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <span class="mono step-n">1</span>
+          <h3>Declare</h3>
+          <p>Platform facts, packages, desktop, boot, trust. Typed schemas; unknown fields are rejected.</p>
+        </div>
+        <div class="step">
+          <span class="mono step-n">2</span>
+          <h3>Compose</h3>
+          <p>Layers union, keyed definitions must match, scalars take the highest layer. Deterministic.</p>
+        </div>
+        <div class="step">
+          <span class="mono step-n">3</span>
+          <h3>Build</h3>
+          <p>One Containerfile, one digest. The same commit and inputs produce the same plan.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="platforms" class="section">
+  <div class="wrap">
+    <p class="label"><span class="num">02</span> Platforms</p>
+    <h2 class="h2">Same intent, the vendor's base.</h2>
+    <p class="body section-lede">Each platform starts from its own vendor's bootc image — never a
+      derived one — and says what has actually been verified on it. What is not measured is written
+      as not measured.</p>
+
+    <div class="table-wrap" role="region" aria-label="Platform status" tabindex="0">
+      <table class="platforms">
+        <thead>
+          <tr><th scope="col">Platform</th><th scope="col">Base</th><th scope="col">Composes</th><th scope="col">Image</th><th scope="col">Booted</th><th scope="col">Published</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">CentOS Stream 10</th>
+            <td class="mono">centos-bootc</td>
+            <td><span class="dot dot-green"></span>validated</td>
+            <td><span class="dot dot-green"></span>CI</td>
+            <td><span class="dot dot-green"></span>GNOME + session</td>
+            <td><span class="dot dot-green"></span>quay.io/deskos</td>
+          </tr>
+          <tr>
+            <th scope="row">AlmaLinux 10</th>
+            <td class="mono">almalinux-bootc</td>
+            <td><span class="dot dot-green"></span>validated</td>
+            <td><span class="dot dot-green"></span>CI</td>
+            <td><span class="dot dot-green"></span>GNOME + session</td>
+            <td><span class="dot dot-green"></span>quay.io/deskos</td>
+          </tr>
+          <tr>
+            <th scope="row">Fedora 45</th>
+            <td class="mono">fedora-silverblue</td>
+            <td><span class="dot dot-green"></span>validated</td>
+            <td><span class="dot dot-green"></span>CI</td>
+            <td><span class="dot dot-amber"></span>CI, prerelease</td>
+            <td><span class="dot dot-muted"></span>none</td>
+          </tr>
+          <tr>
+            <th scope="row">RHEL 10</th>
+            <td class="mono">rhel-bootc</td>
+            <td><span class="dot dot-green"></span>validated</td>
+            <td><span class="dot dot-muted"></span>by the org</td>
+            <td><span class="dot dot-muted"></span>by the org</td>
+            <td><span class="dot dot-red"></span>never</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-note">RHEL-derived images are never published. Fedora is pinned to a prerelease
+      compose; when the released compose lands, the pin moves and the measurement is repeated.</p>
+  </div>
+</section>
+
+<section id="ships" class="section">
+  <div class="wrap">
+    <p class="label"><span class="num">03</span> What the plan carries</p>
+    <div class="cards">
+      <article class="card">
+        <h3>Packages, not a script</h3>
+        <p>Package groups, individual packages, signed third-party repositories, RPM files with a
+          checksum and a key. No <code>postInstall</code>, no shell hook.</p>
+      </article>
+      <article class="card">
+        <h3>Desktop defaults</h3>
+        <p>Wallpaper, login logo, shell extensions, dock, keyboard. Written as dconf defaults, never
+          as locks: a user can still change them.</p>
+      </article>
+      <article class="card">
+        <h3>Boot and update policy</h3>
+        <p>Kernel arguments, Plymouth theme, and the units that stage updates. The platform's own
+          update timer is masked so there is exactly one path.</p>
+      </article>
+      <article class="card">
+        <h3>Trust and evidence</h3>
+        <p>CA anchors, Flatpak remotes and a declared SBOM. The published digest is signed and
+          attested; the installed SBOM is scanned before the tag moves.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="install" class="section">
+  <div class="wrap">
+    <p class="label"><span class="num">04</span> Install</p>
+    <div class="section-grid">
+      <div>
+        <h2 class="h2">Take the image,<br>or build one.</h2>
+        <p class="body">The community images are published as bootable containers. Pull one, write a
+          disk or an installer ISO, boot it. RHEL 10 is built and published by the organization that
+          is entitled to it.</p>
+        <p class="body">Installer ISOs for the community images are <strong>in progress</strong>: the
+          build, the install test and the download site are being prepared. Until then, the documented
+          path is the image and <code>bootc-image-builder</code>.</p>
+      </div>
+      <figure class="terminal">
+        <figcaption class="mono">deskosctl — compile a workstation</figcaption>
+        <pre><code><span class="c-dim"># what the repository ships</span>
+<span class="c-prompt">$</span> <span class="c-cmd">deskosctl</span> validate
+ok: 4 workstation(s) compose cleanly
+
+<span class="c-dim"># the typed plan, not a rendered guess</span>
+<span class="c-prompt">$</span> <span class="c-cmd">deskosctl</span> plan --workstation deskos-core-centos-stream-10
+
+<span class="c-dim"># the build context, pinned to the base digest</span>
+<span class="c-prompt">$</span> <span class="c-cmd">deskosctl</span> render --workstation deskos-core-centos-stream-10 --output ctx
+
+<span class="c-dim"># one image, one digest</span>
+<span class="c-prompt">$</span> <span class="c-cmd">sudo</span> podman build -t localhost/deskos ctx</code></pre>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section id="questions" class="section">
+  <div class="wrap narrow">
+    <p class="label"><span class="num">05</span> Questions</p>
+    <h2 class="h2">Before you ask.</h2>
+    <details open>
+      <summary>Is this a distribution?</summary>
+      <p>No. DeskOS compiles workstations onto the base each vendor already ships. It does not own a
+        kernel, a package archive or a support contract for one.</p>
+    </details>
+    <details>
+      <summary>What does "deterministic" mean here, exactly?</summary>
+      <p>The compiler is offline and its output is a pure function of the resources: same inputs, same
+        plan and same Containerfile. The image build is not bit-for-bit reproducible yet — external
+        repositories move — and the documentation says so.</p>
+    </details>
+    <details>
+      <summary>Do I need RHEL to use it?</summary>
+      <p>No. CentOS Stream 10 and AlmaLinux 10 are subscription-free and are published here. RHEL 10
+        is supported as a platform, but its builds stay with the organization that holds the
+        entitlement.</p>
+    </details>
+    <details>
+      <summary>Why no configuration management agent?</summary>
+      <p>The artifact is the delivery. What a machine runs is decided when it is compiled, reviewed as
+        a diff, and pinned by digest. There is no reconciliation loop to drift.</p>
+    </details>
+    <details>
+      <summary>Where are the ISOs?</summary>
+      <p>Being built. The pipeline compiles them from a published digest, installs them in a VM to
+        prove they work, signs the checksum and serves them from a download host. They will appear on
+        this page when that evidence exists.</p>
+    </details>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-grid">
+    <div>
+      <img class="wordmark" src="assets/wordmark.svg" alt="DeskOS" width="132" height="27">
+      <p class="footer-note">Workstations compiled from declared intent.</p>
+    </div>
+    <nav aria-label="Documentation">
+      <h2 class="mono footer-title">Docs</h2>
+      <ul>
+        <li><a href="https://github.com/deskosproject/deskos-core/blob/main/docs/platforms.md">Platforms</a></li>
+        <li><a href="https://github.com/deskosproject/deskos-core/blob/main/docs/architecture.md">Architecture</a></li>
+        <li><a href="https://github.com/deskosproject/deskos-core/blob/main/docs/install.md">Installing</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Project">
+      <h2 class="mono footer-title">Project</h2>
+      <ul>
+        <li><a href="https://github.com/deskosproject/deskos-core">Source</a></li>
+        <li><a href="https://github.com/deskosproject/deskos-core/blob/main/LICENSE">Apache-2.0</a></li>
+        <li><a href="https://github.com/deskosproject/deskos-core/issues">Issues</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="wrap footer-bottom mono">
+    <span>© 2026 DeskOS</span>
+    <span>No analytics. No tracking. No account.</span>
+  </div>
+</footer>
+
+</body>
+</html>
