@@ -11,7 +11,7 @@ python3 -m http.server 8080
 
 ## Design
 
-A blueprint, not a brochure: graphite ground, paper text, one amber accent, thin
+A blueprint, not a brochure: graphite ground, paper text, one cold-blue accent, thin
 rules and mono labels for anything a reader might check. The wordmark and Manrope
 come from `deskos-brand`; everything else here is new.
 
