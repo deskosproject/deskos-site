@@ -171,12 +171,13 @@ h1 {
 .arrow::before { content: ""; position: absolute; top: 0; bottom: 10px; width: 2px; background: var(--line); }
 .arrow::after { content: ""; position: absolute; bottom: 0; border: 7px solid transparent; border-top-color: var(--line); }
 .arrow .mono { position: relative; background: var(--ink); padding: .15rem .6rem; color: var(--muted); font-size: .66rem; }
-.compose { display: grid; grid-template-columns: 1.4fr 1fr; gap: 1px; background: var(--line-soft); border: 1px solid var(--line-soft); }
+.compose { display: grid; grid-template-columns: 1.4fr 2.2rem 1fr; gap: 1px; background: var(--line-soft); border: 1px solid var(--line-soft); }
 .layers { background: var(--panel); padding: .9rem; display: grid; gap: .3rem; align-content: center; }
 .layer { display: block; padding: .42rem .7rem; font-family: var(--mono); font-size: .66rem; letter-spacing: .04em; text-transform: uppercase; color: #cfd6d1; border-left: 3px solid var(--line); background: var(--ink); }
 .layer.w1 { width: 100%; } .layer.w2 { width: 86%; } .layer.w3 { width: 73%; }
 .layer.w4 { width: 60%; border-left-color: var(--accent); color: var(--paper); }
 .layers-note { display: block; margin-top: .55rem; color: var(--muted); font-size: .6rem; letter-spacing: .02em; }
+.compose-arrow { display: flex; align-items: center; justify-content: center; background: var(--ink); color: var(--muted); font-family: var(--mono); font-size: 1.1rem; }
 .plan { background: var(--ink); padding: .9rem; }
 .plan .file { display: block; font-size: .62rem; color: var(--muted); margin-bottom: .5rem; }
 .plan code { font-family: var(--mono); font-size: .72rem; line-height: 1.55; color: #cfd6d1; white-space: pre-wrap; }
