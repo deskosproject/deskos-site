@@ -95,7 +95,7 @@ a:hover { color: var(--accent); }
 /* Hero */
 .hero { padding: clamp(2.4rem, 5vw, 4rem) 0 0; }
 
-.hero-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: clamp(2rem, 5vw, 5rem); align-items: start; }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(360px, 1.18fr); gap: clamp(2rem, 5vw, 5rem); align-items: start; }
 .eyebrow {
   font-family: var(--mono); font-size: .78rem; letter-spacing: .14em; text-transform: uppercase;
   color: var(--accent); margin: 0 0 1.2rem;
@@ -115,7 +115,7 @@ h1 {
 .figure-plain { margin: 2.2rem 0 0; }
 .figure-plain picture { display: block; }
 .figure-plain img { display: block; width: 100%; height: auto; }
-.hero-figure { margin-top: 2.6rem; }
+.hero-figure { margin-top: .4rem; }
 
 /* Hero visual */
 .hero-visual { min-width: 0; }
