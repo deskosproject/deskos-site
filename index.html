@@ -42,19 +42,16 @@
         <a class="btn btn-solid" href="#platforms">See the platforms</a>
         <a class="btn btn-ghost" href="https://github.com/deskosproject/deskos-core/tree/main/docs">Read the docs</a>
       </div>
+
+      <figure class="figure-plain hero-figure">
+        <picture>
+          <source srcset="assets/intent-to-image.webp" type="image/webp">
+          <img src="assets/intent-to-image.jpg" width="1536" height="864" alt="From intent to image: a workstation YAML is validated, composed and planned into a Containerfile, which becomes one bootc image pulled by every machine with the same digest">
+        </picture>
+      </figure>
     </div>
-
-
   </div>
 
-  <div class="wrap">
-    <dl class="stats">
-      <div><dt>4</dt><dd>platforms</dd></div>
-      <div><dt>14</dt><dd>resource kinds</dd></div>
-      <div><dt>0</dt><dd>controllers</dd></div>
-      <div><dt>0</dt><dd>shell hooks</dd></div>
-    </dl>
-  </div>
 </section>
 
 <section id="compile" class="section light">
@@ -67,23 +64,12 @@
         podman. There is no runtime, no agent and no controller.</p>
     </div>
 
-    <div class="steps3">
-      <article class="step3">
-        <span class="mono n3">1 · describe</span>
-        <h3>A workstation, a platform, a few profiles.</h3>
-        <p>The platform pins its base image by digest. No commands, no hooks.</p>
-      </article>
-      <article class="step3">
-        <span class="mono n3">2 · merge</span>
-        <h3>Layers union. Conflicts stop it.</h3>
-        <p>If two layers set the same value differently, both are named and nothing is built.</p>
-      </article>
-      <article class="step3">
-        <span class="mono n3">3 · render</span>
-        <h3>A Containerfile, then one image.</h3>
-        <p>podman builds the generated file once; the digest is what a machine runs and what gets signed.</p>
-      </article>
-    </div>
+    <figure class="figure-plain">
+      <picture>
+        <source srcset="assets/four-layers.webp" type="image/webp">
+        <img src="assets/four-layers.jpg" width="1536" height="864" alt="Four YAML layers — foundation, organization, role and workstation — converge through deskosctl render into one Containerfile">
+      </picture>
+    </figure>
 
     <p class="light-note mono">deterministic · offline · no scripts · nothing runs on the machine</p>
   </div>
@@ -154,6 +140,13 @@
       <p class="body">Installer ISOs for the community images are <strong>in progress</strong>: the
         build, the install test and the download site are being prepared. Until then the documented
         path is the image and <code>bootc-image-builder</code>.</p>
+
+      <figure class="figure-plain">
+        <picture>
+          <source srcset="assets/install-update-reboot.webp" type="image/webp">
+          <img src="assets/install-update-reboot.jpg" width="1536" height="864" alt="Install, update and reboot: bootc upgrade stages a new image, the reboot activates it, and the previous image stays one boot away">
+        </picture>
+      </figure>
     </div>
   </div>
 </section>

@@ -9,11 +9,11 @@
 }
 
 :root {
-  --ink: #f4efe1;
-  --panel: #fbf7ea;
-  --panel-2: #f7f1e1;
-  --line: #cdc3ae;
-  --line-soft: #e2d8c3;
+  --ink: #faf3e1;
+  --panel: #f6eeda;
+  --panel-2: #f7f0dd;
+  --line: #d6cab1;
+  --line-soft: #e8dec7;
   --paper: #2c2f27;
   --muted: #6d7061;
   --accent: #3f5b3c;
@@ -111,6 +111,12 @@ h1 {
 .actions { display: flex; flex-wrap: wrap; gap: .8rem; }
 .note { font-family: var(--mono); font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-top: 1.6rem; }
 
+/* Illustrations (notebook plates: no frame, they sit on the paper) */
+.figure-plain { margin: 2.2rem 0 0; }
+.figure-plain picture { display: block; }
+.figure-plain img { display: block; width: 100%; height: auto; }
+.hero-figure { margin-top: 2.6rem; }
+
 /* Hero visual */
 .hero-visual { min-width: 0; }
 .hero-plate { margin: 0; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: #111414; box-shadow: 8px 8px 0 rgba(44,47,39,.12); }
@@ -141,7 +147,7 @@ h1 {
 .body strong { color: var(--paper); }
 .section-lede { max-width: 62ch; margin-bottom: 2.4rem; }
 .section-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(2rem, 5vw, 4.5rem); align-items: start; }
-.install-copy { max-width: 62ch; }
+.install-copy { max-width: none; }
 
 .compile-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(1.5rem, 4vw, 4rem); align-items: end; margin-bottom: 1.6rem; }
 .compile-head .h2 { margin-bottom: 0; }
