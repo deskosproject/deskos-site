@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>DeskOS — the desktop is compiled</title>
-<meta name="description" content="DeskOS turns declared intent into a typed plan and a bootable container image: packages, desktop defaults, boot, updates and policy, with the same inputs producing the same artifact.">
-<meta name="theme-color" content="#0E1110">
+<meta name="description" content="DeskOS turns declared intent into a typed plan, a generated Containerfile and one bootable container image pinned by digest.">
+<meta name="theme-color" content="#F4EFE1">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/site.css">
 </head>
@@ -32,7 +32,7 @@
 <main id="main">
 
 <section class="hero">
-    <div class="wrap hero-grid">
+  <div class="wrap hero-grid">
     <div class="hero-copy">
       <p class="eyebrow">bootc · OCI · deterministic</p>
       <h1>The desktop<br>is <span class="mark">compiled</span>.</h1>
@@ -44,15 +44,7 @@
       </div>
     </div>
 
-    <aside class="hero-visual">
-      <figure class="hero-plate">
-        <picture>
-          <source srcset="assets/containerfile-to-image.webp" type="image/webp">
-          <img src="assets/containerfile-to-image.png" width="1190" height="605"
-               alt="A Containerfile on the left becomes a stack of container image layers on the right">
-        </picture>
-      </figure>
-    </aside>
+
   </div>
 
   <div class="wrap">
@@ -80,27 +72,19 @@
         <span class="mono n3">1 · describe</span>
         <h3>A workstation, a platform, a few profiles.</h3>
         <p>The platform pins its base image by digest. No commands, no hooks.</p>
-        <div class="mini-v">workstation.yaml
-<span class="l-blue">platformRef: centos-stream-10</span>
-profiles: [deskos-core, …]</div>
       </article>
       <article class="step3">
         <span class="mono n3">2 · merge</span>
         <h3>Layers union. Conflicts stop it.</h3>
         <p>If two layers set the same value differently, both are named and nothing is built.</p>
-        <div class="mini-v bars3"><span>foundation</span><span>role</span><span>workstation</span></div>
       </article>
       <article class="step3">
         <span class="mono n3">3 · render</span>
         <h3>A Containerfile, then one image.</h3>
-        <p>podman builds it once; the digest is what a machine runs and what gets signed.</p>
-        <div class="mini-v"><span class="l-blue">FROM</span> centos-bootc@sha256:98cb…
-<span class="dim">→ image@sha256:98cb…</span></div>
+        <p>podman builds the generated file once; the digest is what a machine runs and what gets signed.</p>
       </article>
     </div>
-    <figure class="light-figure">
-      <img src="assets/flow-light.svg" alt="A YAML sheet compiled into a Containerfile, which becomes a stack of image layers" loading="lazy">
-    </figure>
+
     <p class="light-note mono">deterministic · offline · no scripts · nothing runs on the machine</p>
   </div>
 </section>
@@ -161,44 +145,27 @@ profiles: [deskos-core, …]</div>
 
 <section id="install" class="section">
   <div class="wrap">
-    <p class="label"><span class="num">04</span> Install</p>
-    <div class="section-grid">
-      <div>
-        <h2 class="h2">Take the image,<br>or build one.</h2>
-        <p class="body">The community images are published as bootable containers. Pull one, write a
-          disk or an installer ISO, boot it. RHEL 10 is built and published by the organization that
-          is entitled to it.</p>
-        <p class="body">Installer ISOs for the community images are <strong>in progress</strong>: the
-          build, the install test and the download site are being prepared. Until then, the documented
-          path is the image and <code>bootc-image-builder</code>.</p>
-      </div>
-      <figure class="terminal">
-        <figcaption class="mono">deskosctl — compile a workstation</figcaption>
-        <pre><code><span class="c-dim"># what the repository ships</span>
-<span class="c-prompt">$</span> <span class="c-cmd">deskosctl</span> validate
-ok: 4 workstation(s) compose cleanly
-
-<span class="c-dim"># the typed plan, not a rendered guess</span>
-<span class="c-prompt">$</span> <span class="c-cmd">deskosctl</span> plan --workstation deskos-core-centos-stream-10
-
-<span class="c-dim"># the build context, pinned to the base digest</span>
-<span class="c-prompt">$</span> <span class="c-cmd">deskosctl</span> render --workstation \
-    deskos-core-centos-stream-10 --output ctx
-
-<span class="c-dim"># one image, one digest</span>
-<span class="c-prompt">$</span> <span class="c-cmd">sudo</span> podman build -t localhost/deskos ctx</code></pre>
-      </figure>
+    <p class="label"><span class="num">03</span> Install</p>
+    <div class="install-copy">
+      <h2 class="h2">Install once.<br>Update as an image.</h2>
+      <p class="body">The community images are published as bootable containers. Write one to a
+        disk, boot it, and every later update is a new image staged beside the old one — the
+        previous one stays one boot away.</p>
+      <p class="body">Installer ISOs for the community images are <strong>in progress</strong>: the
+        build, the install test and the download site are being prepared. Until then the documented
+        path is the image and <code>bootc-image-builder</code>.</p>
     </div>
   </div>
 </section>
 
 <section id="questions" class="section">
   <div class="wrap narrow">
-    <p class="label"><span class="num">05</span> Questions</p>
+    <p class="label"><span class="num">04</span> Questions</p>
     <h2 class="h2">Before you ask.</h2>
     <details open>
       <summary>Is this a distribution?</summary>
-      <p>No. DeskOS compiles workstations onto the base each vendor already ships.</p>
+      <p>No. DeskOS compiles workstations onto the base each vendor already ships. It does not own a
+        kernel, a package archive or a support contract for one.</p>
     </details>
     <details>
       <summary>Does anything of DeskOS run on the machine?</summary>
@@ -215,7 +182,8 @@ ok: 4 workstation(s) compose cleanly
       <p>Being built: compiled from a published digest, installed in a VM to prove it works, then
         served from a download host. They will appear here when that evidence exists.</p>
     </details>
-  </section>
+  </div>
+</section>
 
 </main>
 
