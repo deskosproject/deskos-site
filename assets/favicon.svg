@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="DeskOS">
-  <rect width="32" height="32" rx="6" fill="#F4EFE1"/>
-  <rect x="6.5" y="6.5" width="19" height="19" fill="none" stroke="#3F5B3C" stroke-width="2.5"/>
-  <rect x="12.5" y="12.5" width="7" height="7" fill="#2C2F27"/>
+  <rect width="32" height="32" rx="6" fill="#F1F5F8"/>
+  <rect x="6.5" y="6.5" width="19" height="19" fill="none" stroke="#4E7892" stroke-width="2.5"/>
+  <rect x="12.5" y="12.5" width="7" height="7" fill="#1E2A33"/>
 </svg>
