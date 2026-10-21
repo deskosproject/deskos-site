@@ -84,112 +84,115 @@
         allowed to read.</p>
     </div>
 
-    <div class="poster">
-      <div class="stage">
-        <p class="stage-label mono">declared intent</p>
-        <div class="src-grid">
-          <article class="src s-blue">
-            <span class="mono file"><span class="tag tag-1">1</span>platforms/centos-stream-10.yaml</span>
+    <div class="lesson">
+
+      <article class="lesson-step">
+        <div class="lesson-num">1</div>
+        <div class="lesson-text">
+          <h3>You describe the machine.</h3>
+          <p>A workstation is a few small YAML files, not a script. It says which platform it is
+            for and which profiles it includes; the platform says which base to start from and pins
+            that base by digest.</p>
+        </div>
+        <div class="lesson-visual">
+          <div class="yaml">
+            <span class="file mono">workstations/deskos-core-centos-stream-10.yaml</span>
+            <code><span class="hl hl-green">platformRef: centos-stream-10</span>
+profiles: [deskos-core, deskos-gnome, …]</code>
+            <span class="file mono">platforms/centos-stream-10.yaml</span>
             <code>bootc.image: centos-bootc:stream10
-digest: sha256:98cb9980…</code>
-          </article>
-          <article class="src s-green">
-            <span class="mono file"><span class="tag tag-2">2</span>workstations/…-centos-stream-10.yaml</span>
-            <code>platformRef: centos-stream-10
-profiles: [deskos-core, …]</code>
-          </article>
-          <article class="src s-violet">
-            <span class="mono file"><span class="tag tag-3">3</span>desktop/deskos-core.yaml</span>
-            <code>shell.extensions: […]
-appearance.wallpaper: …</code>
-          </article>
-          <article class="src s-paper">
-            <span class="mono file"><span class="tag tag-4">4</span>software/*.yaml</span>
-            <code>packages: [firefox, flatpak, …]</code>
-          </article>
-        </div>
-      </div>
-
-      <div class="arrow" aria-hidden="true"><span class="mono">compose</span></div>
-
-      <div class="stage">
-        <p class="stage-label mono">one typed plan</p>
-        <div class="compose">
-          <div class="layers" aria-label="Semantic layers, low to high">
-            <span class="layer w4">workstation</span>
-            <span class="layer w3">role</span>
-            <span class="layer w2">organization</span>
-            <span class="layer w1">foundation</span>
-            <span class="layers-note mono">sets union · keyed must match · scalars take the highest layer</span>
+<span class="hl hl-blue">digest: sha256:98cb9980…</span></code>
           </div>
-          <span class="compose-arrow" aria-hidden="true">→</span>
-          <div class="plan">
-            <span class="mono file">plan.json</span>
-            <code>plan.deskos.org/v1alpha1
-canonical order
-no timestamps</code>
+          <p class="visual-note"><span class="tag tag-green">green</span> the workstation ·
+            <span class="tag tag-blue">blue</span> the pinned base</p>
+        </div>
+      </article>
+
+      <div class="lesson-arrow"><span class="mono">DeskOS reads it</span></div>
+
+      <article class="lesson-step">
+        <div class="lesson-num">2</div>
+        <div class="lesson-text">
+          <h3>DeskOS merges it and checks it.</h3>
+          <p>Profiles are layers: foundation, organization, role, workstation. Lists add up. If two
+            layers set the same thing differently, compilation stops and names both — there is no
+            “last file wins”.</p>
+        </div>
+        <div class="lesson-visual">
+          <div class="merge">
+            <div class="bars" aria-label="Layers, low to high">
+              <span class="bar b1">foundation</span>
+              <span class="bar b2">organization</span>
+              <span class="bar b3">role</span>
+              <span class="bar b4">workstation</span>
+            </div>
+            <span class="merge-arrow" aria-hidden="true">→</span>
+            <div class="plan-card">
+              <span class="file mono">the plan</span>
+              <code>"baseImage": "…@sha256:98cb9980…",
+"packages": ["firefox", "flatpak", …]</code>
+            </div>
+          </div>
+          <p class="visual-note">The plan is the full, checked recipe. Nothing else decides.</p>
+        </div>
+      </article>
+
+      <div class="lesson-arrow"><span class="mono">and writes the build recipe</span></div>
+
+      <article class="lesson-step">
+        <div class="lesson-num">3</div>
+        <div class="lesson-text">
+          <h3>The plan becomes a Containerfile.</h3>
+          <p>That is the file podman builds. You never edit it: every line comes from the plan, so a
+            change is a diff you can review before anything is built.</p>
+        </div>
+        <div class="lesson-visual">
+          <div class="pair">
+            <div class="mini">
+              <span class="file mono">plan</span>
+              <code>baseImage:
+  centos-bootc@sha256:98cb…</code>
+            </div>
+            <div class="pair-link mono">same digest</div>
+            <div class="mini">
+              <span class="file mono">Containerfile</span>
+              <code><b>FROM</b> quay.io/centos-bootc/
+  centos-bootc:stream10<b>@sha256:98cb…</b></code>
+            </div>
+          </div>
+          <p class="visual-note">One fact, one place. Everything else in the file follows the same rule.</p>
+        </div>
+      </article>
+
+      <div class="lesson-arrow"><span class="mono">podman build</span></div>
+
+      <article class="lesson-step">
+        <div class="lesson-num">4</div>
+        <div class="lesson-text">
+          <h3>You get one bootable image.</h3>
+          <p>The result is an OCI image with a digest. That digest is what a machine runs, what gets
+            signed, and what the SBOM describes — not a tag that can move.</p>
+        </div>
+        <div class="lesson-visual">
+          <div class="result">
+            <span class="stack" aria-hidden="true"><i></i><i></i><i></i></span>
+            <div>
+              <strong class="mono">image@sha256:98cb…</strong>
+              <p class="visual-note">bootc · signed digest · SBOM · scanned</p>
+            </div>
           </div>
         </div>
-      </div>
-
-      <div class="arrow" aria-hidden="true"><span class="mono">render</span></div>
-
-      <div class="stage">
-        <p class="stage-label mono">the only writer</p>
-        <div class="cf">
-          <div class="cf-line"><span class="n mono">1</span><code><em># Generated by deskosctl from plan.json. Do not edit.</em></code><span class="tick tick-muted"></span></div>
-          <div class="cf-line"><span class="n mono">2</span><code><b>FROM</b> quay.io/centos-bootc/centos-bootc:stream10<b>@sha256:98cb9980…</b></code><span class="tick tick-blue">1</span></div>
-          <div class="cf-line"><span class="n mono">3</span><code><b>RUN</b> … dnf -y group install 'workstation-product-environment'</code><span class="tick tick-green">2</span></div>
-          <div class="cf-line"><span class="n mono">4</span><code><b>COPY</b> rootfs/ /   <em># dconf defaults, wallpaper, extensions</em></code><span class="tick tick-violet">3</span></div>
-          <div class="cf-line"><span class="n mono">5</span><code><b>RUN</b> … dnf -y install firefox flatpak …</code><span class="tick tick-paper">4</span></div>
-          <div class="cf-line"><span class="n mono">6</span><code><b>RUN</b> … bootc container lint</code><span class="tick tick-muted"></span></div>
-        </div>
-      </div>
-
-      <div class="arrow" aria-hidden="true"><span class="mono">bootc</span></div>
-
-      <div class="stage">
-        <p class="stage-label mono">one artifact</p>
-        <div class="image">
-          <div class="stack" aria-hidden="true"><i></i><i></i><i></i></div>
-          <div class="image-copy">
-            <strong>image@sha256</strong>
-            <p class="mono">bootc · signed digest · SBOM · scanned</p>
-          </div>
-          <span class="mono image-note">the same plan always produces this one digest</span>
-        </div>
-      </div>
+      </article>
     </div>
 
-    <div class="tech">
-      <figure class="terminal">
-        <figcaption class="mono">deskosctl plan — the typed plan</figcaption>
-        <pre><code><span class="c-prompt">$</span> <span class="c-cmd">deskosctl</span> plan --workstation deskos-core-centos-stream-10
-WORKSTATION  deskos-core-centos-stream-10
-PLATFORM     centos-stream-10
-  base image: quay.io/centos-bootc/centos-bootc:stream10
-              (pinned <span class="c-flag">sha256:98cb9980…</span>)
-PROFILES     foundation: deskos-core, deskos-gnome, fedora…
-GROUPS       workstation → workstation-product-environment
-PACKAGES     11
-UNITS        deskos-image-update.timer, gdm.service
-MASKS        bootc-fetch-apply-updates.timer/.service</code></pre>
-      </figure>
-      <figure class="terminal">
-        <figcaption class="mono">ctx/Containerfile — generated, never hand-edited</figcaption>
-        <pre><code><span class="c-dim"># Generated by deskosctl from plan.json. Do not edit.</span>
-<span class="c-dim"># Workstation: deskos-core-centos-stream-10</span>
-FROM quay.io/centos-bootc/centos-bootc:stream10<span class="c-flag">@sha256:98cb9980…</span>
-
-<span class="c-dim"># Package groups</span>
-RUN ... dnf -y group install 'workstation-product-environment' ...
-
-<span class="c-dim"># Image files</span>
-COPY rootfs/ /
-
-<span class="c-dim"># Cleanup and bootc validation</span>
-RUN ... bootc container lint</code></pre>
-      </figure>
+    <div class="envelope">
+      <p>YAML → plan → Containerfile → image. Every line can be traced back, and the same inputs
+        always produce the same plan.</p>
+      <dl class="glossary">
+        <div><dt>Containerfile</dt><dd>the recipe podman builds.</dd></div>
+        <div><dt>bootc image</dt><dd>a container that boots as a machine.</dd></div>
+        <div><dt>digest</dt><dd>the content address of the image.</dd></div>
+      </dl>
     </div>
 
     <dl class="facts">
