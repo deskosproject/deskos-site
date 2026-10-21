@@ -32,35 +32,72 @@
 <main id="main">
 
 <section class="hero">
-  <div class="wrap hero-grid">
+    <div class="wrap hero-grid">
     <div class="hero-copy">
       <p class="eyebrow">bootc · OCI · deterministic</p>
       <h1>The desktop<br>is <span class="mark">compiled</span>.</h1>
-      <p class="lede">DeskOS turns declared intent — platform, packages, desktop, policy — into a typed
-        plan and a bootable container image. Same inputs, same artifact. No controller, no fleet,
-        no machine phoning home.</p>
+      <p class="lede">Declared intent becomes a typed plan and a bootable image.
+        Same inputs, same artifact.</p>
       <div class="actions">
         <a class="btn btn-solid" href="#platforms">See the platforms</a>
         <a class="btn btn-ghost" href="https://github.com/deskosproject/deskos-core/tree/main/docs">Read the docs</a>
       </div>
-      <p class="note">Apache-2.0 · no account · no telemetry</p>
     </div>
 
-    <aside class="spec" aria-label="What a compiled workstation looks like">
-      <div class="spec-head">
-        <span class="mono">specimen</span>
-        <span class="dot dot-green" aria-hidden="true"></span>
-      </div>
-      <h2 class="spec-name">deskos-core-centos-stream-10</h2>
-      <dl class="spec-rows">
-        <div><dt>platform</dt><dd>centos-stream-10</dd></div>
-        <div><dt>base</dt><dd class="trunc">centos-bootc@sha256:98cb9980…</dd></div>
-        <div><dt>layers</dt><dd>foundation · role · workstation</dd></div>
-        <div><dt>kinds</dt><dd>14 typed resources</dd></div>
-        <div><dt>output</dt><dd>plan.json + Containerfile</dd></div>
-        <div><dt>image</dt><dd class="ok">published, booted in CI</dd></div>
-      </dl>
-      <p class="spec-foot mono">one plan → one image → one digest</p>
+    <aside class="hero-visual">
+      <svg class="hero-svg" viewBox="0 0 560 520" role="img" aria-labelledby="flow-title">
+        <title id="flow-title">A workstation and its layers are compiled into a Containerfile, which becomes one bootc image pinned by digest</title>
+
+        <!-- workstation -->
+        <rect x="10" y="10" width="540" height="200" rx="8" fill="#151a18" stroke="#2a322e"/>
+        <circle cx="520" cy="34" r="4" fill="#62d394"/>
+        <text x="34" y="38" font-family="ui-monospace, Menlo, monospace" font-size="10" letter-spacing="1.6" fill="#9ba69f">WORKSTATION</text>
+        <text x="34" y="64" font-family="Manrope, system-ui, sans-serif" font-size="15" font-weight="700" fill="#f3f0e7">deskos-core-centos-stream-10</text>
+
+        <rect x="34" y="82" width="492" height="24" fill="#0e1110"/>
+        <rect x="34" y="82" width="3" height="24" fill="#4c8dff"/>
+        <text x="48" y="98" font-family="ui-monospace, Menlo, monospace" font-size="9" letter-spacing="1.2" fill="#9ba69f">FOUNDATION</text>
+        <text x="150" y="98" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#cfd6d1">deskos-core</text>
+
+        <rect x="34" y="108" width="492" height="24" fill="#0e1110"/>
+        <rect x="34" y="108" width="3" height="24" fill="#2a322e"/>
+        <text x="48" y="124" font-family="ui-monospace, Menlo, monospace" font-size="9" letter-spacing="1.2" fill="#9ba69f">DESKTOP</text>
+        <text x="150" y="124" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#cfd6d1">deskos-gnome</text>
+
+        <rect x="34" y="134" width="492" height="24" fill="#0e1110"/>
+        <rect x="34" y="134" width="3" height="24" fill="#2a322e"/>
+        <text x="48" y="150" font-family="ui-monospace, Menlo, monospace" font-size="9" letter-spacing="1.2" fill="#9ba69f">LOOK</text>
+        <text x="150" y="150" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#cfd6d1">deskos-look</text>
+
+        <rect x="34" y="160" width="492" height="24" fill="#0e1110"/>
+        <rect x="34" y="160" width="3" height="24" fill="#2a322e"/>
+        <text x="48" y="176" font-family="ui-monospace, Menlo, monospace" font-size="9" letter-spacing="1.2" fill="#9ba69f">APPS</text>
+        <text x="150" y="176" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#cfd6d1">deskos-reference-apps</text>
+
+        <!-- arrow -->
+        <line x1="280" y1="214" x2="280" y2="244" stroke="#2a322e" stroke-width="2"/>
+        <polygon points="274,243 286,243 280,254" fill="#9ba69f"/>
+
+        <!-- containerfile -->
+        <rect x="10" y="262" width="540" height="112" rx="8" fill="#151a18" stroke="#2a322e"/>
+        <text x="34" y="288" font-family="ui-monospace, Menlo, monospace" font-size="10" letter-spacing="1.6" fill="#9ba69f">CONTAINERFILE</text>
+        <text x="516" y="288" text-anchor="end" font-family="ui-monospace, Menlo, monospace" font-size="9" fill="#9ba69f">generated</text>
+        <text x="34" y="316" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#cfd6d1"><tspan font-weight="700" fill="#f3f0e7">FROM</tspan> centos-bootc<tspan fill="#8fb8ff">@sha256:98cb…</tspan></text>
+        <text x="34" y="338" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#cfd6d1"><tspan font-weight="700" fill="#f3f0e7">RUN</tspan> dnf group install …</text>
+        <text x="34" y="360" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#cfd6d1"><tspan font-weight="700" fill="#f3f0e7">COPY</tspan> rootfs/ /</text>
+
+        <!-- arrow -->
+        <line x1="280" y1="378" x2="280" y2="406" stroke="#2a322e" stroke-width="2"/>
+        <polygon points="274,405 286,405 280,416" fill="#9ba69f"/>
+
+        <!-- image -->
+        <rect x="10" y="424" width="540" height="84" rx="8" fill="#151a18" stroke="#2a322e"/>
+        <rect x="34" y="440" width="40" height="10" rx="2" fill="#0e1110" stroke="#4c8dff" stroke-width="2"/>
+        <rect x="38" y="451" width="40" height="10" rx="2" fill="#0e1110" stroke="#4c8dff" stroke-width="2"/>
+        <rect x="42" y="462" width="40" height="10" rx="2" fill="#0e1110" stroke="#4c8dff" stroke-width="2"/>
+        <text x="104" y="452" font-family="ui-monospace, Menlo, monospace" font-size="10" letter-spacing="1.4" fill="#9ba69f">BOOTC IMAGE</text>
+        <text x="104" y="476" font-family="ui-monospace, Menlo, monospace" font-size="13" fill="#8fb8ff">@sha256:98cb9980…</text>
+      </svg>
     </aside>
   </div>
 
@@ -69,138 +106,48 @@
       <div><dt>4</dt><dd>platforms</dd></div>
       <div><dt>14</dt><dd>resource kinds</dd></div>
       <div><dt>0</dt><dd>controllers</dd></div>
-      <div><dt>0</dt><dd>phone-home</dd></div>
+      <div><dt>0</dt><dd>shell hooks</dd></div>
     </dl>
   </div>
 </section>
 
-<section id="compile" class="section">
+<section id="compile" class="section light">
   <div class="wrap">
     <p class="label"><span class="num">01</span> Compile</p>
     <div class="compile-head">
-      <h2 class="h2">From declared intent<br>to a pinned digest.</h2>
-      <p class="body">The compiler is offline and deterministic: it validates the resources, composes
-        the semantic layers and writes a typed plan. That plan is the only thing the backend is
-        allowed to read.</p>
+      <h2 class="h2">YAML in.<br>One image out.</h2>
+      <p class="body">You describe the machine; DeskOS checks it, merges the layers and writes a
+        generated Containerfile. That file is the whole output: read it, diff it, build it with
+        podman. There is no runtime, no agent and no controller.</p>
     </div>
 
-    <div class="lesson">
-
-      <article class="lesson-step">
-        <div class="lesson-num">1</div>
-        <div class="lesson-text">
-          <h3>You describe the machine.</h3>
-          <p>A workstation is a few small YAML files, not a script. It says which platform it is
-            for and which profiles it includes; the platform says which base to start from and pins
-            that base by digest.</p>
-        </div>
-        <div class="lesson-visual">
-          <div class="yaml">
-            <span class="file mono">workstations/deskos-core-centos-stream-10.yaml</span>
-            <code><span class="hl hl-green">platformRef: centos-stream-10</span>
-profiles: [deskos-core, deskos-gnome, …]</code>
-            <span class="file mono">platforms/centos-stream-10.yaml</span>
-            <code>bootc.image: centos-bootc:stream10
-<span class="hl hl-blue">digest: sha256:98cb9980…</span></code>
-          </div>
-          <p class="visual-note"><span class="tag tag-green">green</span> the workstation ·
-            <span class="tag tag-blue">blue</span> the pinned base</p>
-        </div>
+    <div class="steps3">
+      <article class="step3">
+        <span class="mono n3">1 · describe</span>
+        <h3>A workstation, a platform, a few profiles.</h3>
+        <p>The platform pins its base image by digest. No commands, no hooks.</p>
+        <div class="mini-v">workstation.yaml
+<span class="l-blue">platformRef: centos-stream-10</span>
+profiles: [deskos-core, …]</div>
       </article>
-
-      <div class="lesson-arrow"><span class="mono">DeskOS reads it</span></div>
-
-      <article class="lesson-step">
-        <div class="lesson-num">2</div>
-        <div class="lesson-text">
-          <h3>DeskOS merges it and checks it.</h3>
-          <p>Profiles are layers: foundation, organization, role, workstation. Lists add up. If two
-            layers set the same thing differently, compilation stops and names both — there is no
-            “last file wins”.</p>
-        </div>
-        <div class="lesson-visual">
-          <div class="merge">
-            <div class="bars" aria-label="Layers, low to high">
-              <span class="bar b1">foundation</span>
-              <span class="bar b2">organization</span>
-              <span class="bar b3">role</span>
-              <span class="bar b4">workstation</span>
-            </div>
-            <span class="merge-arrow" aria-hidden="true">→</span>
-            <div class="plan-card">
-              <span class="file mono">the plan</span>
-              <code>"baseImage": "…@sha256:98cb9980…",
-"packages": ["firefox", "flatpak", …]</code>
-            </div>
-          </div>
-          <p class="visual-note">The plan is the full, checked recipe. Nothing else decides.</p>
-        </div>
+      <article class="step3">
+        <span class="mono n3">2 · merge</span>
+        <h3>Layers union. Conflicts stop it.</h3>
+        <p>If two layers set the same value differently, both are named and nothing is built.</p>
+        <div class="mini-v bars3"><span>foundation</span><span>role</span><span>workstation</span></div>
       </article>
-
-      <div class="lesson-arrow"><span class="mono">and writes the build recipe</span></div>
-
-      <article class="lesson-step">
-        <div class="lesson-num">3</div>
-        <div class="lesson-text">
-          <h3>The plan becomes a Containerfile.</h3>
-          <p>That is the file podman builds. You never edit it: every line comes from the plan, so a
-            change is a diff you can review before anything is built.</p>
-        </div>
-        <div class="lesson-visual">
-          <div class="pair">
-            <div class="mini">
-              <span class="file mono">plan</span>
-              <code>baseImage:
-  centos-bootc@sha256:98cb…</code>
-            </div>
-            <div class="pair-link mono">same digest</div>
-            <div class="mini">
-              <span class="file mono">Containerfile</span>
-              <code><b>FROM</b> quay.io/centos-bootc/
-  centos-bootc:stream10<b>@sha256:98cb…</b></code>
-            </div>
-          </div>
-          <p class="visual-note">One fact, one place. Everything else in the file follows the same rule.</p>
-        </div>
-      </article>
-
-      <div class="lesson-arrow"><span class="mono">podman build</span></div>
-
-      <article class="lesson-step">
-        <div class="lesson-num">4</div>
-        <div class="lesson-text">
-          <h3>You get one bootable image.</h3>
-          <p>The result is an OCI image with a digest. That digest is what a machine runs, what gets
-            signed, and what the SBOM describes — not a tag that can move.</p>
-        </div>
-        <div class="lesson-visual">
-          <div class="result">
-            <span class="stack" aria-hidden="true"><i></i><i></i><i></i></span>
-            <div>
-              <strong class="mono">image@sha256:98cb…</strong>
-              <p class="visual-note">bootc · signed digest · SBOM · scanned</p>
-            </div>
-          </div>
-        </div>
+      <article class="step3">
+        <span class="mono n3">3 · render</span>
+        <h3>A Containerfile, then one image.</h3>
+        <p>podman builds it once; the digest is what a machine runs and what gets signed.</p>
+        <div class="mini-v"><span class="l-blue">FROM</span> centos-bootc@sha256:98cb…
+<span class="dim">→ image@sha256:98cb…</span></div>
       </article>
     </div>
-
-    <div class="envelope">
-      <p>YAML → plan → Containerfile → image. Every line can be traced back, and the same inputs
-        always produce the same plan.</p>
-      <dl class="glossary">
-        <div><dt>Containerfile</dt><dd>the recipe podman builds.</dd></div>
-        <div><dt>bootc image</dt><dd>a container that boots as a machine.</dd></div>
-        <div><dt>digest</dt><dd>the content address of the image.</dd></div>
-      </dl>
-    </div>
-
-    <dl class="facts">
-      <div><dt>Deterministic</dt><dd>Sorting and normalization are part of the plan; the same inputs produce the same bytes.</dd></div>
-      <div><dt>Offline</dt><dd>No network, no model, no service. Builds fetch; plans never do.</dd></div>
-      <div><dt>One writer</dt><dd>Facts come from resources. There is no script hook and no post-install command.</dd></div>
-      <div><dt>Reviewable</dt><dd>A change appears as a diff in plan.json and in the Containerfile, not as a runtime effect.</dd></div>
-    </dl>
+    <figure class="light-figure">
+      <img src="assets/flow-light.svg" alt="A YAML sheet compiled into a Containerfile, which becomes a stack of image layers" loading="lazy">
+    </figure>
+    <p class="light-note mono">deterministic · offline · no scripts · nothing runs on the machine</p>
   </div>
 </section>
 
@@ -258,34 +205,6 @@ profiles: [deskos-core, deskos-gnome, …]</code>
   </div>
 </section>
 
-<section id="ships" class="section">
-  <div class="wrap">
-    <p class="label"><span class="num">03</span> What the plan carries</p>
-    <div class="cards">
-      <article class="card">
-        <h3>Packages, not a script</h3>
-        <p>Package groups, individual packages, signed third-party repositories, RPM files with a
-          checksum and a key. No <code>postInstall</code>, no shell hook.</p>
-      </article>
-      <article class="card">
-        <h3>Desktop defaults</h3>
-        <p>Wallpaper, login logo, shell extensions, dock, keyboard. Written as dconf defaults, never
-          as locks: a user can still change them.</p>
-      </article>
-      <article class="card">
-        <h3>Boot and update policy</h3>
-        <p>Kernel arguments, Plymouth theme, and the units that stage updates. The platform's own
-          update timer is masked so there is exactly one path.</p>
-      </article>
-      <article class="card">
-        <h3>Trust and evidence</h3>
-        <p>CA anchors, Flatpak remotes and a declared SBOM. The published digest is signed and
-          attested; the installed SBOM is scanned before the tag moves.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
 <section id="install" class="section">
   <div class="wrap">
     <p class="label"><span class="num">04</span> Install</p>
@@ -309,7 +228,8 @@ ok: 4 workstation(s) compose cleanly
 <span class="c-prompt">$</span> <span class="c-cmd">deskosctl</span> plan --workstation deskos-core-centos-stream-10
 
 <span class="c-dim"># the build context, pinned to the base digest</span>
-<span class="c-prompt">$</span> <span class="c-cmd">deskosctl</span> render --workstation deskos-core-centos-stream-10 --output ctx
+<span class="c-prompt">$</span> <span class="c-cmd">deskosctl</span> render --workstation \
+    deskos-core-centos-stream-10 --output ctx
 
 <span class="c-dim"># one image, one digest</span>
 <span class="c-prompt">$</span> <span class="c-cmd">sudo</span> podman build -t localhost/deskos ctx</code></pre>
@@ -324,34 +244,24 @@ ok: 4 workstation(s) compose cleanly
     <h2 class="h2">Before you ask.</h2>
     <details open>
       <summary>Is this a distribution?</summary>
-      <p>No. DeskOS compiles workstations onto the base each vendor already ships. It does not own a
-        kernel, a package archive or a support contract for one.</p>
+      <p>No. DeskOS compiles workstations onto the base each vendor already ships.</p>
     </details>
     <details>
-      <summary>What does "deterministic" mean here, exactly?</summary>
-      <p>The compiler is offline and its output is a pure function of the resources: same inputs, same
-        plan and same Containerfile. The image build is not bit-for-bit reproducible yet — external
-        repositories move — and the documentation says so.</p>
+      <summary>Does anything of DeskOS run on the machine?</summary>
+      <p>No. DeskOS writes a Containerfile; podman builds it; bootc boots the image. The optional
+        <code>deskos</code> companion only reports what the image contains.</p>
     </details>
     <details>
-      <summary>Do I need RHEL to use it?</summary>
-      <p>No. CentOS Stream 10 and AlmaLinux 10 are subscription-free and are published here. RHEL 10
-        is supported as a platform, but its builds stay with the organization that holds the
-        entitlement.</p>
-    </details>
-    <details>
-      <summary>Why no configuration management agent?</summary>
-      <p>The artifact is the delivery. What a machine runs is decided when it is compiled, reviewed as
-        a diff, and pinned by digest. There is no reconciliation loop to drift.</p>
+      <summary>What does “deterministic” mean?</summary>
+      <p>Same resources, same plan and same Containerfile. The image build is not bit-for-bit
+        reproducible yet, because external repositories move — and the docs say so.</p>
     </details>
     <details>
       <summary>Where are the ISOs?</summary>
-      <p>Being built. The pipeline compiles them from a published digest, installs them in a VM to
-        prove they work, signs the checksum and serves them from a download host. They will appear on
-        this page when that evidence exists.</p>
+      <p>Being built: compiled from a published digest, installed in a VM to prove it works, then
+        served from a download host. They will appear here when that evidence exists.</p>
     </details>
-  </div>
-</section>
+  </section>
 
 </main>
 
@@ -380,7 +290,7 @@ ok: 4 workstation(s) compose cleanly
   </div>
   <div class="wrap footer-bottom mono">
     <span>© 2026 DeskOS</span>
-    <span>No analytics. No tracking. No account.</span>
+    <span>Apache-2.0</span>
   </div>
 </footer>
 
