@@ -61,21 +61,21 @@
 <section id="compile" class="section light">
   <div class="wrap">
     <p class="label"><span class="num">01</span> Compile</p>
-    <div class="compile-head">
-      <h2 class="h2">YAML in.<br>One image out.</h2>
-      <p class="body">You describe the machine; DeskOS checks it, merges the layers and writes a
-        generated Containerfile. That file is the whole output: read it, diff it, build it with
-        podman. There is no runtime, no agent and no controller.</p>
+    <div class="split">
+      <div class="split-text">
+        <h2 class="h2">YAML in.<br>One image out.</h2>
+        <p class="body">You describe the machine; DeskOS checks it, merges the layers and writes a
+          generated Containerfile. That file is the whole output: read it, diff it, build it with
+          podman. There is no runtime, no agent and no controller.</p>
+        <p class="light-note mono">deterministic · offline · no scripts · nothing runs on the machine</p>
+      </div>
+      <figure class="split-figure">
+        <picture>
+          <source srcset="assets/four-layers.webp" type="image/webp">
+          <img src="assets/four-layers.jpg" width="1536" height="864" alt="Four YAML layers — foundation, organization, role and workstation — converge through deskosctl render into one Containerfile">
+        </picture>
+      </figure>
     </div>
-
-    <figure class="figure-plain figure-narrow">
-      <picture>
-        <source srcset="assets/four-layers.webp" type="image/webp">
-        <img src="assets/four-layers.jpg" width="1536" height="864" alt="Four YAML layers — foundation, organization, role and workstation — converge through deskosctl render into one Containerfile">
-      </picture>
-    </figure>
-
-    <p class="light-note mono">deterministic · offline · no scripts · nothing runs on the machine</p>
   </div>
 </section>
 
@@ -136,16 +136,17 @@
 <section id="install" class="section">
   <div class="wrap">
     <p class="label"><span class="num">03</span> Install</p>
-    <div class="install-copy">
-      <h2 class="h2">Install once.<br>Update as an image.</h2>
-      <p class="body">The community images are published as bootable containers. Write one to a
-        disk, boot it, and every later update is a new image staged beside the old one — the
-        previous one stays one boot away.</p>
-      <p class="body">Installer ISOs for the community images are <strong>in progress</strong>: the
-        build, the install test and the download site are being prepared. Until then the documented
-        path is the image and <code>bootc-image-builder</code>.</p>
-
-      <figure class="figure-plain figure-narrow">
+    <div class="split flip">
+      <div class="split-text">
+        <h2 class="h2">Install once.<br>Update as an image.</h2>
+        <p class="body">The community images are published as bootable containers. Write one to a
+          disk, boot it, and every later update is a new image staged beside the old one — the
+          previous one stays one boot away.</p>
+        <p class="body">Installer ISOs for the community images are <strong>in progress</strong>: the
+          build, the install test and the download site are being prepared. Until then the documented
+          path is the image and <code>bootc-image-builder</code>.</p>
+      </div>
+      <figure class="split-figure">
         <picture>
           <source srcset="assets/install-update-reboot.webp" type="image/webp">
           <img src="assets/install-update-reboot.jpg" width="1536" height="864" alt="Install, update and reboot: bootc upgrade stages a new image, the reboot activates it, and the previous image stays one boot away">
