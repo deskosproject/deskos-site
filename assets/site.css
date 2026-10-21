@@ -113,6 +113,7 @@ h1 {
 
 /* Illustrations (notebook plates: no frame, they sit on the paper) */
 .figure-plain { margin: 2.2rem 0 0; }
+.figure-narrow { max-width: 720px; margin-inline: auto; }
 .figure-plain picture { display: block; }
 .figure-plain img { display: block; width: 100%; height: auto; }
 .hero-figure { margin-top: .4rem; }
