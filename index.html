@@ -45,59 +45,13 @@
     </div>
 
     <aside class="hero-visual">
-      <svg class="hero-svg" viewBox="0 0 560 520" role="img" aria-labelledby="flow-title">
-        <title id="flow-title">A workstation and its layers are compiled into a Containerfile, which becomes one bootc image pinned by digest</title>
-
-        <!-- workstation -->
-        <rect x="10" y="10" width="540" height="200" rx="8" fill="#151a18" stroke="#2a322e"/>
-        <circle cx="520" cy="34" r="4" fill="#62d394"/>
-        <text x="34" y="38" font-family="ui-monospace, Menlo, monospace" font-size="10" letter-spacing="1.6" fill="#9ba69f">WORKSTATION</text>
-        <text x="34" y="64" font-family="Manrope, system-ui, sans-serif" font-size="15" font-weight="700" fill="#f3f0e7">deskos-core-centos-stream-10</text>
-
-        <rect x="34" y="82" width="492" height="24" fill="#0e1110"/>
-        <rect x="34" y="82" width="3" height="24" fill="#4c8dff"/>
-        <text x="48" y="98" font-family="ui-monospace, Menlo, monospace" font-size="9" letter-spacing="1.2" fill="#9ba69f">FOUNDATION</text>
-        <text x="150" y="98" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#cfd6d1">deskos-core</text>
-
-        <rect x="34" y="108" width="492" height="24" fill="#0e1110"/>
-        <rect x="34" y="108" width="3" height="24" fill="#2a322e"/>
-        <text x="48" y="124" font-family="ui-monospace, Menlo, monospace" font-size="9" letter-spacing="1.2" fill="#9ba69f">DESKTOP</text>
-        <text x="150" y="124" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#cfd6d1">deskos-gnome</text>
-
-        <rect x="34" y="134" width="492" height="24" fill="#0e1110"/>
-        <rect x="34" y="134" width="3" height="24" fill="#2a322e"/>
-        <text x="48" y="150" font-family="ui-monospace, Menlo, monospace" font-size="9" letter-spacing="1.2" fill="#9ba69f">LOOK</text>
-        <text x="150" y="150" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#cfd6d1">deskos-look</text>
-
-        <rect x="34" y="160" width="492" height="24" fill="#0e1110"/>
-        <rect x="34" y="160" width="3" height="24" fill="#2a322e"/>
-        <text x="48" y="176" font-family="ui-monospace, Menlo, monospace" font-size="9" letter-spacing="1.2" fill="#9ba69f">APPS</text>
-        <text x="150" y="176" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#cfd6d1">deskos-reference-apps</text>
-
-        <!-- arrow -->
-        <line x1="280" y1="214" x2="280" y2="244" stroke="#2a322e" stroke-width="2"/>
-        <polygon points="274,243 286,243 280,254" fill="#9ba69f"/>
-
-        <!-- containerfile -->
-        <rect x="10" y="262" width="540" height="112" rx="8" fill="#151a18" stroke="#2a322e"/>
-        <text x="34" y="288" font-family="ui-monospace, Menlo, monospace" font-size="10" letter-spacing="1.6" fill="#9ba69f">CONTAINERFILE</text>
-        <text x="516" y="288" text-anchor="end" font-family="ui-monospace, Menlo, monospace" font-size="9" fill="#9ba69f">generated</text>
-        <text x="34" y="316" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#cfd6d1"><tspan font-weight="700" fill="#f3f0e7">FROM</tspan> centos-bootc<tspan fill="#8fb8ff">@sha256:98cb…</tspan></text>
-        <text x="34" y="338" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#cfd6d1"><tspan font-weight="700" fill="#f3f0e7">RUN</tspan> dnf group install …</text>
-        <text x="34" y="360" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#cfd6d1"><tspan font-weight="700" fill="#f3f0e7">COPY</tspan> rootfs/ /</text>
-
-        <!-- arrow -->
-        <line x1="280" y1="378" x2="280" y2="406" stroke="#2a322e" stroke-width="2"/>
-        <polygon points="274,405 286,405 280,416" fill="#9ba69f"/>
-
-        <!-- image -->
-        <rect x="10" y="424" width="540" height="84" rx="8" fill="#151a18" stroke="#2a322e"/>
-        <rect x="34" y="440" width="40" height="10" rx="2" fill="#0e1110" stroke="#4c8dff" stroke-width="2"/>
-        <rect x="38" y="451" width="40" height="10" rx="2" fill="#0e1110" stroke="#4c8dff" stroke-width="2"/>
-        <rect x="42" y="462" width="40" height="10" rx="2" fill="#0e1110" stroke="#4c8dff" stroke-width="2"/>
-        <text x="104" y="452" font-family="ui-monospace, Menlo, monospace" font-size="10" letter-spacing="1.4" fill="#9ba69f">BOOTC IMAGE</text>
-        <text x="104" y="476" font-family="ui-monospace, Menlo, monospace" font-size="13" fill="#8fb8ff">@sha256:98cb9980…</text>
-      </svg>
+      <figure class="hero-plate">
+        <picture>
+          <source srcset="assets/containerfile-to-image.webp" type="image/webp">
+          <img src="assets/containerfile-to-image.png" width="1190" height="605"
+               alt="A Containerfile on the left becomes a stack of container image layers on the right">
+        </picture>
+      </figure>
     </aside>
   </div>
 
