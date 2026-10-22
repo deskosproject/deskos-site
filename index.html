@@ -22,6 +22,7 @@
         <li><a href="#compile">Compile</a></li>
         <li><a href="#platforms">Platforms</a></li>
         <li><a href="#install">Install</a></li>
+        <li><a href="https://download.deskos.org/">Download</a></li>
         <li><a href="#questions">Questions</a></li>
       </ul>
     </nav>
@@ -39,7 +40,8 @@
       <p class="lede">Declared intent becomes a typed plan and a bootable image.
         Same inputs, same artifact.</p>
       <div class="actions">
-        <a class="btn btn-solid" href="#platforms">See the platforms</a>
+        <a class="btn btn-solid" href="https://download.deskos.org/">Download CS10</a>
+        <a class="btn btn-ghost" href="#platforms">See the platforms</a>
         <a class="btn btn-ghost" href="https://github.com/deskosproject/deskos-core/tree/main/docs">Read the docs</a>
       </div>
 
@@ -142,9 +144,11 @@
         <p class="body">The community images are published as bootable containers. Write one to a
           disk, boot it, and every later update is a new image staged beside the old one — the
           previous one stays one boot away.</p>
-        <p class="body">Installer ISOs for the community images are <strong>in progress</strong>: the
-          build, the install test and the download site are being prepared. Until then the documented
-          path is the image and <code>bootc-image-builder</code>.</p>
+        <p class="body">The <strong>CentOS Stream 10 preview ISO</strong> is available now: it was
+          installed and booted in a VM before publication. AlmaLinux 10 and Fedora 45 installer ISOs
+          are still in progress; until they land, build those from the image with
+          <code>bootc-image-builder</code>.</p>
+        <p><a class="btn btn-solid" href="https://download.deskos.org/">Download the CS10 ISO</a></p>
       </div>
       <figure class="split-figure">
         <picture>
@@ -177,8 +181,9 @@
     </details>
     <details>
       <summary>Where are the ISOs?</summary>
-      <p>Being built: compiled from a published digest, installed in a VM to prove it works, then
-        served from a download host. They will appear here when that evidence exists.</p>
+      <p>The CentOS Stream 10 preview ISO is published at
+        <a href="https://download.deskos.org/">download.deskos.org</a>, with its checksum.
+        AlmaLinux 10 and Fedora 45 installer ISOs are still in progress.</p>
     </details>
   </div>
 </section>
