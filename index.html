@@ -104,22 +104,6 @@
             <td><span class="dot dot-green"></span>quay.io/deskos</td>
           </tr>
           <tr>
-            <th scope="row">AlmaLinux 10</th>
-            <td class="mono">almalinux-bootc</td>
-            <td><span class="dot dot-green"></span>validated</td>
-            <td><span class="dot dot-green"></span>CI</td>
-            <td><span class="dot dot-green"></span>GNOME + session</td>
-            <td><span class="dot dot-green"></span>quay.io/deskos</td>
-          </tr>
-          <tr>
-            <th scope="row">Fedora 45</th>
-            <td class="mono">fedora-silverblue</td>
-            <td><span class="dot dot-green"></span>validated</td>
-            <td><span class="dot dot-green"></span>CI</td>
-            <td><span class="dot dot-violet"></span>CI, prerelease</td>
-            <td><span class="dot dot-muted"></span>none</td>
-          </tr>
-          <tr>
             <th scope="row">RHEL 10</th>
             <td class="mono">rhel-bootc</td>
             <td><span class="dot dot-green"></span>validated</td>
@@ -130,8 +114,8 @@
         </tbody>
       </table>
     </div>
-    <p class="table-note">RHEL-derived images are never published. Fedora is pinned to a prerelease
-      compose; when the released compose lands, the pin moves and the measurement is repeated.</p>
+    <p class="table-note">RHEL-derived images are never published. AlmaLinux 10 and Fedora 45 are
+      example platforms, not shipped or published platforms.</p>
   </div>
 </section>
 
@@ -145,9 +129,9 @@
           disk, boot it, and every later update is a new image staged beside the old one — the
           previous one stays one boot away.</p>
         <p class="body">The <strong>DeskOS CentOS Stream 10 preview ISO</strong> is available now: it was
-          installed and booted in a VM before publication. AlmaLinux 10 and Fedora 45 installer ISOs
-          are still in progress; until they land, build those from the image with
-          <code>bootc-image-builder</code>.</p>
+          installed and booted in a VM before publication. AlmaLinux 10 and Fedora 45 are
+          example platforms, not published ones; build them from their example roots with
+          <code>bootc-image-builder</code> if you need a test image.</p>
         <p><a class="btn btn-solid" href="https://download.deskos.org/">Download the CS10 ISO</a></p>
       </div>
       <figure class="split-figure">
@@ -183,7 +167,8 @@
       <summary>Where are the ISOs?</summary>
       <p>The DeskOS CentOS Stream 10 preview ISO is published at
         <a href="https://download.deskos.org/">download.deskos.org</a>, with its checksum.
-        AlmaLinux 10 and Fedora 45 installer ISOs are still in progress.</p>
+        AlmaLinux 10 and Fedora 45 are example platforms; no installer ISOs are published
+        for them.</p>
     </details>
   </div>
 </section>
