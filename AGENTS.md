@@ -25,6 +25,14 @@ production.
 5. **Links go to the repository** for anything that changes: platform status,
    install steps, architecture. Do not duplicate the docs, point at them.
 
+## Language
+
+English is the working language of this repository: code, comments,
+documentation, commit messages, pull request titles and bodies, issues and
+review comments. Write in English even when the maintainer writes in another
+language, and translate text you touch rather than adding more of it in
+another language.
+
 ## Design rules
 
 - **Palette.** Paper `#F1F5F8`; ink `#1E2A33`; the brand blue `#4E7892` (taken
