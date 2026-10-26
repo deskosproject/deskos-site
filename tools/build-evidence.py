@@ -1,0 +1,319 @@
+#!/usr/bin/env python3
+"""Generate the evidence page from the public evidence index.
+
+The page is a static file: this script is run by hand after a promotion, never
+by the site. It reads only the public bucket, so an organization's private
+evidence can never appear here.
+
+Usage:
+    python3 tools/build-evidence.py
+    python3 tools/build-evidence.py --digest sha256:… --output evidence/index.html
+"""
+from __future__ import annotations
+
+import argparse
+import html
+import json
+import urllib.request
+from pathlib import Path
+
+DEFAULT_DIGEST = "sha256:649aff753ce166f299995f1235f616a151d249a94217e546a2ae624536f93af5"
+DEFAULT_BASE = (
+    "https://evidence.deskos.org/deskos/deskos-core-centos-stream-10"
+)
+REPO = "https://github.com/deskosproject/deskos-core"
+
+
+def fetch(url: str):
+    request = urllib.request.Request(url, headers={"User-Agent": "DeskOS-evidence/1.0"})
+    with urllib.request.urlopen(request, timeout=60) as response:
+        return response.read()
+
+
+def json_at(base: str, name: str):
+    return json.loads(fetch(f"{base}/{name}"))
+
+
+def esc(value) -> str:
+    return html.escape("" if value is None else str(value))
+
+
+def dot(result) -> str:
+    if result == "pass":
+        return '<span class="dot dot-green"></span>pass'
+    if result == "fail":
+        return '<span class="dot dot-red"></span>fail'
+    if result in ("skip", "skipped", None):
+        return '<span class="dot dot-muted"></span>not measured'
+    return f'<span class="dot dot-muted"></span>{esc(result)}'
+
+
+def render(digest: str, base: str) -> str:
+    index = json_at(base, "index.json")
+    if index.get("digest") != digest:
+        raise SystemExit(f"index names {index.get('digest')}, not {digest}")
+    identity = json_at(base, "identity.json").get("fields", {})
+    boot = json_at(base, "bootcheck.summary.json")
+    session = json_at(base, "session.json")
+    firstboot = json_at(base, "firstboot.json")
+    objects = [obj["name"] for obj in index.get("objects", [])]
+    checks = session.get("checks") or []
+    failed = [c for c in checks if c.get("pass") is False and not c.get("skipped")]
+    skipped = [c for c in checks if c.get("skipped")]
+    passed = [c for c in checks if c.get("pass") and not c.get("skipped")]
+    values = session.get("values") or {}
+    shell = values.get("gnome_shell", "unknown")
+    session_type = values.get("session_type", "unknown")
+    avc = values.get("avc_denials", "0")
+    first_values = firstboot.get("values") or {}
+    gis = first_values.get("gis_processes")
+
+    object_rows = "\n".join(
+        f'            <li><a class="mono" href="{esc(base)}/{esc(name)}">{esc(name)}</a></li>'
+        for name in objects
+    )
+    check_rows = "\n".join(
+        "          <tr>"
+        f"<th scope=\"row\">{esc(c.get('check'))}</th>"
+        f"<td>{dot('pass' if c.get('pass') else ('skip' if c.get('skipped') else 'fail'))}</td>"
+        f"<td class=\"mono\">{esc(c.get('detail'))}</td>"
+        "</tr>"
+        for c in checks
+    )
+    failure_note = (
+        f'{len(failed)} failed check(s)'
+        if failed
+        else "no failed check"
+    )
+    skipped_note = (
+        f"{len(skipped)} left out" if skipped else "none left out"
+    )
+
+    return f"""<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Evidence — DeskOS</title>
+<meta name="description" content="What the published DeskOS digest was checked for: boot, session, first boot, the evidence objects and how to verify the signature.">
+<meta name="theme-color" content="#F1F5F8">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="../" aria-label="DeskOS">
+      <img class="wordmark" src="../assets/lockup.svg" alt="DeskOS" width="199" height="30">
+    </a>
+    <nav aria-label="Main">
+      <ul class="links">
+        <li><a href="../#compile">Compile</a></li>
+        <li><a href="../#platforms">Platforms</a></li>
+        <li><a href="../#install">Install</a></li>
+        <li><a href="./" aria-current="page">Evidence</a></li>
+        <li><a href="https://download.deskos.org/">Download</a></li>
+        <li><a href="../#questions">Questions</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn-ghost nav-cta" href="{REPO}">Source</a>
+  </div>
+</header>
+
+<main id="main">
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-copy">
+      <p class="eyebrow">published digest</p>
+      <h1>What was<br><span class="mark">verified</span>.</h1>
+      <p class="lede">Every published digest carries the checks it passed and the ones it
+        did not. This page is generated from the public evidence index; there is no
+        hand-written claim to drift from the record.</p>
+      <p class="mono">{esc(digest)}</p>
+      <div class="actions">
+        <a class="btn btn-solid" href="{esc(base)}/index.json">The index</a>
+        <a class="btn btn-ghost" href="{esc(base)}/session.json">Session report</a>
+        <a class="btn btn-ghost" href="{esc(base)}/grype.txt">Scan report</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section light">
+  <div class="wrap">
+    <p class="label"><span class="num">01</span> Identity</p>
+    <h2 class="h2">One digest, one build.</h2>
+    <div class="table-wrap" role="region" aria-label="Published identity" tabindex="0">
+      <table class="platforms">
+        <tbody>
+          <tr><th scope="row">Image</th><td class="mono">{esc(identity.get('published_ref'))}</td></tr>
+          <tr><th scope="row">Digest</th><td class="mono">{esc(digest)}</td></tr>
+          <tr><th scope="row">Commit</th><td class="mono">{esc(identity.get('commit'))}</td></tr>
+          <tr><th scope="row">Platform</th><td>{esc(identity.get('platform'))}</td></tr>
+          <tr><th scope="row">Workstation</th><td>{esc(identity.get('workstation'))}</td></tr>
+          <tr><th scope="row">Built by</th><td class="mono">{esc(identity.get('workflow'))} run {esc(identity.get('run_id'))}</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <p class="label"><span class="num">02</span> Checks</p>
+    <h2 class="h2">The machine, not the files.</h2>
+    <p class="body section-lede">Three checks ran on the image before it was published: the
+      disk booted, a session came up, and the first-boot wizard appeared with no
+      account. Each result below is the check's own report.</p>
+    <div class="table-wrap" role="region" aria-label="Checks" tabindex="0">
+      <table class="platforms">
+        <thead>
+          <tr><th scope="col">Check</th><th scope="col">Result</th><th scope="col">What it observed</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Boot</th>
+            <td>{dot(boot.get('result'))}</td>
+            <td class="mono">splash {esc(boot.get('splash_first_s'))} s · graphical {esc(boot.get('graphical_first_s'))} s · shutdown {esc(boot.get('shutdown_s'))} s</td>
+          </tr>
+          <tr>
+            <th scope="row">Session</th>
+            <td>{dot(session.get('result'))}</td>
+            <td class="mono">{esc(session_type)} · {esc(shell)} · {len(passed)} checks passed, {failure_note}</td>
+          </tr>
+          <tr>
+            <th scope="row">First boot</th>
+            <td>{dot(firstboot.get('result'))}</td>
+            <td class="mono">wizard: {esc(gis)} process(es)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-note">{skipped_note} in the session check. AVC denials: {esc(avc)}.</p>
+  </div>
+</section>
+
+<section class="section light">
+  <div class="wrap">
+    <p class="label"><span class="num">03</span> Session detail</p>
+    <h2 class="h2">Every check, named.</h2>
+    <p class="body section-lede">The session check fails closed: a required check that cannot
+      be measured is a failure, not a pass.</p>
+    <div class="table-wrap" role="region" aria-label="Session checks" tabindex="0">
+      <table class="platforms">
+        <thead><tr><th scope="col">Check</th><th scope="col">Result</th><th scope="col">Detail</th></tr></thead>
+        <tbody>
+{check_rows}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <p class="label"><span class="num">04</span> Evidence</p>
+    <h2 class="h2">The objects behind the claims.</h2>
+    <p class="body section-lede">The index is the entry point; every object is addressed by
+      the same digest and was fetched back and verified after publication.</p>
+    <ul class="body">
+{object_rows}
+    </ul>
+    <p class="table-note">Signature and attestations: <a href="{esc(base)}/cosign-verify.txt">cosign-verify.txt</a>.</p>
+  </div>
+</section>
+
+<section class="section light">
+  <div class="wrap narrow">
+    <p class="label"><span class="num">05</span> Limits</p>
+    <h2 class="h2">What this does not prove.</h2>
+    <p class="body">An honest record names its edges:</p>
+    <ul class="body">
+      <li>It is not hardware validation. Suspend, radios, audio, ports and the rest are field
+        evidence for one model, not a compatibility claim.</li>
+      <li>It is not accessibility E2E. The session check exercises the desktop through the
+        session, not through assistive APIs.</li>
+      <li>It is not bit-for-bit reproducible. The plan and the Containerfile are deterministic;
+        the image build is not yet.</li>
+      <li>It says nothing about RHEL. RHEL-derived images are built privately and never
+        published.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <p class="label"><span class="num">06</span> Verify</p>
+    <h2 class="h2">Do not trust this page.</h2>
+    <p class="body">Read the record and check the signature yourself:</p>
+    <figure class="terminal">
+      <figcaption class="mono">verify the published digest</figcaption>
+      <pre><span class="c-prompt">$</span> <span class="c-cmd">cosign verify</span> {esc(identity.get('published_ref'))} \\
+    --certificate-oidc-issuer https://token.actions.githubusercontent.com \\
+    --certificate-identity \\
+    '{REPO}/.github/workflows/supply-chain.yml@refs/heads/main'
+
+<span class="c-prompt">$</span> <span class="c-cmd">curl</span> -fsS {esc(base)}/index.json | <span class="c-cmd">jq</span> .digest</pre>
+    </figure>
+    <p class="table-note">Generated by <span class="mono">tools/build-evidence.py</span> from
+      the public index. Do not edit this page by hand.</p>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-grid">
+    <div>
+      <img class="wordmark" src="../assets/lockup.svg" alt="DeskOS" width="170" height="26">
+      <p class="footer-note">Workstations compiled from declared intent.</p>
+    </div>
+    <nav aria-label="Documentation">
+      <h2 class="mono footer-title">Docs</h2>
+      <ul>
+        <li><a href="{REPO}/blob/main/docs/platforms.md">Platforms</a></li>
+        <li><a href="{REPO}/blob/main/docs/architecture.md">Architecture</a></li>
+        <li><a href="{REPO}/blob/main/docs/install.md">Installing</a></li>
+        <li><a href="../evidence/">Evidence</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Project">
+      <h2 class="mono footer-title">Project</h2>
+      <ul>
+        <li><a href="{REPO}">Source</a></li>
+        <li><a href="{REPO}/blob/main/LICENSE">Apache-2.0</a></li>
+        <li><a href="{REPO}/issues">Issues</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="wrap footer-bottom mono">
+    <span>© 2026 DeskOS</span>
+    <span>Apache-2.0</span>
+  </div>
+</footer>
+
+</body>
+</html>
+"""
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--digest", default=DEFAULT_DIGEST)
+    parser.add_argument("--base", default="", help="override the evidence prefix")
+    parser.add_argument("--output", type=Path, default=Path("evidence/index.html"))
+    args = parser.parse_args()
+
+    base = args.base or f"{DEFAULT_BASE}/sha256/{args.digest.split(':', 1)[1]}"
+    page = render(args.digest, base)
+    args.output.parent.mkdir(parents=True, exist_ok=True)
+    args.output.write_text(page)
+    print(f"wrote {args.output}")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
