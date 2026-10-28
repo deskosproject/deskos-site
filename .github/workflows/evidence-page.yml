@@ -10,8 +10,9 @@ name: evidence-page
 # repository, and a page that changes silently is a page nobody checked.
 on:
   schedule:
-    # Monday 09:00 UTC: after the 06:17 gate and the promotion that follows it.
-    - cron: '0 9 * * 1'
+    # Monday 10:00 UTC: the 06:17 gate takes about two hours, the installer
+    # follows it, and the promotion needs both to be done. 09:00 raced them.
+    - cron: '0 10 * * 1'
   workflow_dispatch:
 
 permissions:
@@ -47,7 +48,14 @@ jobs:
           fi
           git config user.name "deskos-evidence"
           git config user.email "release@deskos.org"
-          branch="evidence/stable-$(date -u +%Y%m%d)"
+          # The branch names the digest, so a second run for the same digest
+          # does not fail pushing over a branch that is already in review.
+          digest="$(grep -oE 'sha256:[0-9a-f]{64}' evidence/index.html | head -1 | tr ':' '-')"
+          branch="evidence/stable-${digest:-$(date -u +%Y%m%d)}"
+          if git ls-remote --exit-code --heads origin "$branch" >/dev/null 2>&1; then
+            echo "$branch already waits for review; nothing to open"
+            exit 0
+          fi
           git checkout -b "$branch"
           git add evidence/index.html
           git commit -m "docs(evidence): follow :stable"
