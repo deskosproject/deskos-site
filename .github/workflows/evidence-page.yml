@@ -1,0 +1,57 @@
+name: evidence-page
+
+# Regenerate the evidence page after a promotion, so the page describes the
+# digest `:stable` actually serves. The generator asks quay which digest that is
+# and reads that digest's index in the public bucket; the page is committed, not
+# rendered on request.
+#
+# Weekly, after the supply-chain schedule and the promotion it triggers, plus on
+# demand. It opens a pull request: the site is reviewed like the rest of the
+# repository, and a page that changes silently is a page nobody checked.
+on:
+  schedule:
+    # Monday 09:00 UTC: after the 06:17 gate and the promotion that follows it.
+    - cron: '0 9 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: evidence-page
+  cancel-in-progress: false
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.12'
+
+      - name: Regenerate the page from :stable
+        run: python3 tools/build-evidence.py
+
+      - name: Open the update when the digest moved
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          if git diff --quiet; then
+            echo "the page already describes :stable"
+            exit 0
+          fi
+          git config user.name "deskos-evidence"
+          git config user.email "release@deskos.org"
+          branch="evidence/stable-$(date -u +%Y%m%d)"
+          git checkout -b "$branch"
+          git add evidence/index.html
+          git commit -m "docs(evidence): follow :stable"
+          git push -u origin "$branch"
+          gh pr create --base main --head "$branch" \
+            --title "docs(evidence): follow :stable" \
+            --body "Regenerated from the digest \`:stable\` serves. The page is a static file; this is the only thing that changes it."
