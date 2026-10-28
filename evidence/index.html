@@ -41,11 +41,11 @@
       <p class="lede">Every published digest carries the checks it passed and the ones it
         did not. This page is generated from the public evidence index; there is no
         hand-written claim to drift from the record.</p>
-      <p class="mono">sha256:649aff753ce166f299995f1235f616a151d249a94217e546a2ae624536f93af5</p>
+      <p class="mono">sha256:871e59cce39d5df1bb4f34d63008641227c5eca785f39f67ed88b89fa6bb115b</p>
       <div class="actions">
-        <a class="btn btn-solid" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/649aff753ce166f299995f1235f616a151d249a94217e546a2ae624536f93af5/index.json">The index</a>
-        <a class="btn btn-ghost" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/649aff753ce166f299995f1235f616a151d249a94217e546a2ae624536f93af5/session.json">Session report</a>
-        <a class="btn btn-ghost" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/649aff753ce166f299995f1235f616a151d249a94217e546a2ae624536f93af5/grype.txt">Scan report</a>
+        <a class="btn btn-solid" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/871e59cce39d5df1bb4f34d63008641227c5eca785f39f67ed88b89fa6bb115b/index.json">The index</a>
+        <a class="btn btn-ghost" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/871e59cce39d5df1bb4f34d63008641227c5eca785f39f67ed88b89fa6bb115b/session.json">Session report</a>
+        <a class="btn btn-ghost" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/871e59cce39d5df1bb4f34d63008641227c5eca785f39f67ed88b89fa6bb115b/grype.txt">Scan report</a>
       </div>
     </div>
   </div>
@@ -58,12 +58,12 @@
     <div class="table-wrap" role="region" aria-label="Published identity" tabindex="0">
       <table class="platforms">
         <tbody>
-          <tr><th scope="row">Image</th><td class="mono">quay.io/deskos/deskos-core-centos-stream-10@sha256:649aff753ce166f299995f1235f616a151d249a94217e546a2ae624536f93af5</td></tr>
-          <tr><th scope="row">Digest</th><td class="mono">sha256:649aff753ce166f299995f1235f616a151d249a94217e546a2ae624536f93af5</td></tr>
-          <tr><th scope="row">Commit</th><td class="mono">2936009d4bba0119025de519a8bb141f2735ec13</td></tr>
+          <tr><th scope="row">Image</th><td class="mono">quay.io/deskos/deskos-core-centos-stream-10@sha256:871e59cce39d5df1bb4f34d63008641227c5eca785f39f67ed88b89fa6bb115b</td></tr>
+          <tr><th scope="row">Digest</th><td class="mono">sha256:871e59cce39d5df1bb4f34d63008641227c5eca785f39f67ed88b89fa6bb115b</td></tr>
+          <tr><th scope="row">Commit</th><td class="mono">2ef9f7559b28a6ad9d503a760dfb92f9ea04d5c0</td></tr>
           <tr><th scope="row">Platform</th><td>centos-stream-10</td></tr>
           <tr><th scope="row">Workstation</th><td>deskos-core-centos-stream-10</td></tr>
-          <tr><th scope="row">Built by</th><td class="mono">supply-chain run 40407632381</td></tr>
+          <tr><th scope="row">Built by</th><td class="mono">supply-chain run 40716569103</td></tr>
         </tbody>
       </table>
     </div>
@@ -86,7 +86,7 @@
           <tr>
             <th scope="row">Boot</th>
             <td><span class="dot dot-green"></span>pass</td>
-            <td class="mono">splash 13.2 s · graphical 19.9 s · shutdown 1.7 s</td>
+            <td class="mono">splash 13.1 s · graphical 19.9 s · shutdown 1.3 s</td>
           </tr>
           <tr>
             <th scope="row">Session</th>
@@ -96,7 +96,7 @@
           <tr>
             <th scope="row">First boot</th>
             <td><span class="dot dot-green"></span>pass</td>
-            <td class="mono">wizard: 4 process(es)</td>
+            <td class="mono">wizard: 3 process(es)</td>
           </tr>
         </tbody>
       </table>
@@ -123,10 +123,11 @@
           <tr><th scope="row">tray watcher serves the session bus</th><td><span class="dot dot-green"></span>pass</td><td class="mono">tray_watcher=present</td></tr>
           <tr><th scope="row">tray watcher accepts a registration</th><td><span class="dot dot-green"></span>pass</td><td class="mono">tray_register=accepted</td></tr>
           <tr><th scope="row">wallpaper as planned</th><td><span class="dot dot-green"></span>pass</td><td class="mono">got &#x27;file:///usr/share/deskos/backgrounds/deskos-light.svg&#x27; want &#x27;file:///usr/share/deskos/backgrounds/deskos-light.svg&#x27;</td></tr>
-          <tr><th scope="row">login logo file exists</th><td><span class="dot dot-green"></span>pass</td><td class="mono">logo=/usr/share/deskos/branding/deskos-login-logo.svg file=present</td></tr>
+          <tr><th scope="row">login logo file exists</th><td><span class="dot dot-green"></span>pass</td><td class="mono">greeter=/usr/share/deskos/branding/deskos-login-logo.svg file=present</td></tr>
+          <tr><th scope="row">the greeter reads the login logo</th><td><span class="dot dot-green"></span>pass</td><td class="mono">greeter=/usr/share/deskos/branding/deskos-login-logo.svg plan=/usr/share/deskos/branding/deskos-login-logo.svg</td></tr>
           <tr><th scope="row">screen locks on request</th><td><span class="dot dot-green"></span>pass</td><td class="mono">screen_locked=true</td></tr>
           <tr><th scope="row">deskos report names the installed workstation</th><td><span class="dot dot-green"></span>pass</td><td class="mono">got deskos-core-centos-stream-10 (exit=0)</td></tr>
-          <tr><th scope="row">deskos check runs on the booted image</th><td><span class="dot dot-green"></span>pass</td><td class="mono">exit=0</td></tr>
+          <tr><th scope="row">deskos check runs on the booted image</th><td><span class="dot dot-green"></span>pass</td><td class="mono">exit=1</td></tr>
           <tr><th scope="row">declared system Flatpaks are installed</th><td><span class="dot dot-green"></span>pass</td><td class="mono">missing=none</td></tr>
           <tr><th scope="row">the guest says whether Firefox is installed</th><td><span class="dot dot-green"></span>pass</td><td class="mono">firefox_present=yes</td></tr>
           <tr><th scope="row">Firefox runs headless</th><td><span class="dot dot-green"></span>pass</td><td class="mono">exit=0 screenshot=yes</td></tr>
@@ -138,7 +139,6 @@
           <tr><th scope="row">plan default /org/gnome/desktop/screensaver/picture-uri</th><td><span class="dot dot-green"></span>pass</td><td class="mono">the image&#x27;s distro database carries &#x27;file:///usr/share/deskos/backgrounds/deskos-light.svg&#x27;, as the plan declares; the session sees &#x27;file:///usr/share/deskos/backgrounds/deskos-light.svg&#x27;, as the plan declares</td></tr>
           <tr><th scope="row">plan default /org/gnome/desktop/session/idle-delay</th><td><span class="dot dot-green"></span>pass</td><td class="mono">the image&#x27;s distro database carries uint32 600, as the plan declares; the session sees uint32 600, as the plan declares</td></tr>
           <tr><th scope="row">plan default /org/gnome/desktop/wm/preferences/button-layout</th><td><span class="dot dot-green"></span>pass</td><td class="mono">the image&#x27;s distro database carries &#x27;:minimize,maximize,close&#x27;, as the plan declares; the session sees &#x27;:minimize,maximize,close&#x27;, as the plan declares</td></tr>
-          <tr><th scope="row">plan default /org/gnome/login-screen/logo</th><td><span class="dot dot-green"></span>pass</td><td class="mono">the image&#x27;s distro database carries &#x27;/usr/share/deskos/branding/deskos-login-logo.svg&#x27;, as the plan declares; the session sees &#x27;/usr/share/deskos/branding/deskos-login-logo.svg&#x27;, as the plan declares</td></tr>
           <tr><th scope="row">plan default /org/gnome/shell/enabled-extensions</th><td><span class="dot dot-green"></span>pass</td><td class="mono">the image&#x27;s distro database carries [&#x27;background-logo@fedorahosted.org&#x27;, &#x27;appindicatorsupport@rgcjonas.gmail.com&#x27;, &#x27;dash-to-dock@micxgx.gmail.com&#x27;], as the plan declares; the session sees [&#x27;background-logo@fedorahosted.org&#x27;, &#x27;appindicatorsupport@rgcjonas.gmail.com&#x27;, &#x27;dash-to-dock@micxgx.gmail.com&#x27;], as the plan declares</td></tr>
           <tr><th scope="row">plan default /org/gnome/shell/extensions/dash-to-dock/autohide</th><td><span class="dot dot-green"></span>pass</td><td class="mono">the image&#x27;s distro database carries true, as the plan declares; the session sees true, as the plan declares</td></tr>
           <tr><th scope="row">plan default /org/gnome/shell/extensions/dash-to-dock/dash-max-icon-size</th><td><span class="dot dot-green"></span>pass</td><td class="mono">the image&#x27;s distro database carries 40, as the plan declares; the session sees 40, as the plan declares</td></tr>
@@ -165,24 +165,24 @@
     <p class="body section-lede">The index is the entry point; every object is addressed by
       the same digest and was fetched back and verified after publication.</p>
     <ul class="body">
-            <li><a class="mono" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/649aff753ce166f299995f1235f616a151d249a94217e546a2ae624536f93af5/bootcheck.summary.json">bootcheck.summary.json</a></li>
-            <li><a class="mono" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/649aff753ce166f299995f1235f616a151d249a94217e546a2ae624536f93af5/commit.txt">commit.txt</a></li>
-            <li><a class="mono" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/649aff753ce166f299995f1235f616a151d249a94217e546a2ae624536f93af5/cosign-verify.txt">cosign-verify.txt</a></li>
-            <li><a class="mono" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/649aff753ce166f299995f1235f616a151d249a94217e546a2ae624536f93af5/cves.json">cves.json</a></li>
-            <li><a class="mono" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/649aff753ce166f299995f1235f616a151d249a94217e546a2ae624536f93af5/declared.sbom.cdx.json">declared.sbom.cdx.json</a></li>
-            <li><a class="mono" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/649aff753ce166f299995f1235f616a151d249a94217e546a2ae624536f93af5/digest.txt">digest.txt</a></li>
-            <li><a class="mono" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/649aff753ce166f299995f1235f616a151d249a94217e546a2ae624536f93af5/effective-exceptions.json">effective-exceptions.json</a></li>
-            <li><a class="mono" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/649aff753ce166f299995f1235f616a151d249a94217e546a2ae624536f93af5/firstboot.json">firstboot.json</a></li>
-            <li><a class="mono" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/649aff753ce166f299995f1235f616a151d249a94217e546a2ae624536f93af5/gate.grype.yaml">gate.grype.yaml</a></li>
-            <li><a class="mono" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/649aff753ce166f299995f1235f616a151d249a94217e546a2ae624536f93af5/generated-manifest.json">generated-manifest.json</a></li>
-            <li><a class="mono" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/649aff753ce166f299995f1235f616a151d249a94217e546a2ae624536f93af5/grype.txt">grype.txt</a></li>
-            <li><a class="mono" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/649aff753ce166f299995f1235f616a151d249a94217e546a2ae624536f93af5/identity.json">identity.json</a></li>
-            <li><a class="mono" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/649aff753ce166f299995f1235f616a151d249a94217e546a2ae624536f93af5/image.txt">image.txt</a></li>
-            <li><a class="mono" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/649aff753ce166f299995f1235f616a151d249a94217e546a2ae624536f93af5/installed.sbom.cdx.json">installed.sbom.cdx.json</a></li>
-            <li><a class="mono" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/649aff753ce166f299995f1235f616a151d249a94217e546a2ae624536f93af5/plan.json">plan.json</a></li>
-            <li><a class="mono" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/649aff753ce166f299995f1235f616a151d249a94217e546a2ae624536f93af5/session.json">session.json</a></li>
+            <li><a class="mono" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/871e59cce39d5df1bb4f34d63008641227c5eca785f39f67ed88b89fa6bb115b/bootcheck.summary.json">bootcheck.summary.json</a></li>
+            <li><a class="mono" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/871e59cce39d5df1bb4f34d63008641227c5eca785f39f67ed88b89fa6bb115b/commit.txt">commit.txt</a></li>
+            <li><a class="mono" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/871e59cce39d5df1bb4f34d63008641227c5eca785f39f67ed88b89fa6bb115b/cosign-verify.txt">cosign-verify.txt</a></li>
+            <li><a class="mono" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/871e59cce39d5df1bb4f34d63008641227c5eca785f39f67ed88b89fa6bb115b/cves.json">cves.json</a></li>
+            <li><a class="mono" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/871e59cce39d5df1bb4f34d63008641227c5eca785f39f67ed88b89fa6bb115b/declared.sbom.cdx.json">declared.sbom.cdx.json</a></li>
+            <li><a class="mono" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/871e59cce39d5df1bb4f34d63008641227c5eca785f39f67ed88b89fa6bb115b/digest.txt">digest.txt</a></li>
+            <li><a class="mono" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/871e59cce39d5df1bb4f34d63008641227c5eca785f39f67ed88b89fa6bb115b/effective-exceptions.json">effective-exceptions.json</a></li>
+            <li><a class="mono" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/871e59cce39d5df1bb4f34d63008641227c5eca785f39f67ed88b89fa6bb115b/firstboot.json">firstboot.json</a></li>
+            <li><a class="mono" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/871e59cce39d5df1bb4f34d63008641227c5eca785f39f67ed88b89fa6bb115b/gate.grype.yaml">gate.grype.yaml</a></li>
+            <li><a class="mono" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/871e59cce39d5df1bb4f34d63008641227c5eca785f39f67ed88b89fa6bb115b/generated-manifest.json">generated-manifest.json</a></li>
+            <li><a class="mono" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/871e59cce39d5df1bb4f34d63008641227c5eca785f39f67ed88b89fa6bb115b/grype.txt">grype.txt</a></li>
+            <li><a class="mono" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/871e59cce39d5df1bb4f34d63008641227c5eca785f39f67ed88b89fa6bb115b/identity.json">identity.json</a></li>
+            <li><a class="mono" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/871e59cce39d5df1bb4f34d63008641227c5eca785f39f67ed88b89fa6bb115b/image.txt">image.txt</a></li>
+            <li><a class="mono" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/871e59cce39d5df1bb4f34d63008641227c5eca785f39f67ed88b89fa6bb115b/installed.sbom.cdx.json">installed.sbom.cdx.json</a></li>
+            <li><a class="mono" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/871e59cce39d5df1bb4f34d63008641227c5eca785f39f67ed88b89fa6bb115b/plan.json">plan.json</a></li>
+            <li><a class="mono" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/871e59cce39d5df1bb4f34d63008641227c5eca785f39f67ed88b89fa6bb115b/session.json">session.json</a></li>
     </ul>
-    <p class="table-note">Signature and attestations: <a href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/649aff753ce166f299995f1235f616a151d249a94217e546a2ae624536f93af5/cosign-verify.txt">cosign-verify.txt</a>.</p>
+    <p class="table-note">Signature and attestations: <a href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/871e59cce39d5df1bb4f34d63008641227c5eca785f39f67ed88b89fa6bb115b/cosign-verify.txt">cosign-verify.txt</a>.</p>
   </div>
 </section>
 
@@ -211,12 +211,12 @@
     <p class="body">Read the record and check the signature yourself:</p>
     <figure class="terminal">
       <figcaption class="mono">verify the published digest</figcaption>
-      <pre><span class="c-prompt">$</span> <span class="c-cmd">cosign verify</span> quay.io/deskos/deskos-core-centos-stream-10@sha256:649aff753ce166f299995f1235f616a151d249a94217e546a2ae624536f93af5 \
+      <pre><span class="c-prompt">$</span> <span class="c-cmd">cosign verify</span> quay.io/deskos/deskos-core-centos-stream-10@sha256:871e59cce39d5df1bb4f34d63008641227c5eca785f39f67ed88b89fa6bb115b \
     --certificate-oidc-issuer https://token.actions.githubusercontent.com \
     --certificate-identity \
     'https://github.com/deskosproject/deskos-core/.github/workflows/supply-chain.yml@refs/heads/main'
 
-<span class="c-prompt">$</span> <span class="c-cmd">curl</span> -fsS https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/649aff753ce166f299995f1235f616a151d249a94217e546a2ae624536f93af5/index.json | <span class="c-cmd">jq</span> .digest</pre>
+<span class="c-prompt">$</span> <span class="c-cmd">curl</span> -fsS https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/871e59cce39d5df1bb4f34d63008641227c5eca785f39f67ed88b89fa6bb115b/index.json | <span class="c-cmd">jq</span> .digest</pre>
     </figure>
     <p class="table-note">Generated by <span class="mono">tools/build-evidence.py</span> from
       the public index. Do not edit this page by hand.</p>
