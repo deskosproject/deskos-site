@@ -1,9 +1,9 @@
 name: evidence-page
 
 # Regenerate the evidence page after a promotion, so the page describes the
-# digest `:stable` actually serves. The generator asks quay which digest that is
-# and reads that digest's index in the public bucket; the page is committed, not
-# rendered on request.
+# digest `:stable` actually serves, and stamp that digest into the home page.
+# Both ask quay which digest `:stable` is; the evidence page reads that digest's
+# index in the public bucket. They are committed, not rendered on request.
 #
 # Weekly, after the supply-chain schedule and the promotion it triggers, plus on
 # demand. It opens a pull request: the site is reviewed like the rest of the
@@ -36,6 +36,12 @@ jobs:
       - name: Regenerate the page from :stable
         run: python3 tools/build-evidence.py
 
+      - name: Name the published digest on the home page
+        # The home page says which digest a reader can verify. Writing it by hand
+        # would be stale the day after a publication, so this resolves :stable
+        # and replaces the value between the markers.
+        run: python3 tools/stamp-digest.py
+
       - name: Open the update when the digest moved
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -49,7 +55,7 @@ jobs:
           git config user.email "release@deskos.org"
           branch="evidence/stable-$(date -u +%Y%m%d)"
           git checkout -b "$branch"
-          git add evidence/index.html
+          git add evidence/index.html index.html
           git commit -m "docs(evidence): follow :stable"
           git push -u origin "$branch"
           gh pr create --base main --head "$branch" \
