@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DeskOS — check what you download</title>
+<meta name="description" content="Three checks anyone can run on a DeskOS installer: the checksum, the signature, and the evidence of the image it carries.">
+<meta name="theme-color" content="#F1F5F8">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="../" aria-label="DeskOS">
+      <img class="wordmark" src="../assets/lockup.svg" alt="DeskOS" width="199" height="30">
+    </a>
+    <nav aria-label="Main">
+      <ul class="links">
+        <li><a href="../#compile">Compile</a></li>
+        <li><a href="../#platforms">Platforms</a></li>
+        <li><a href="../#install">Install</a></li>
+        <li><a href="../evidence/">Evidence</a></li>
+        <li><a href="https://download.deskos.org/">Download</a></li>
+        <li><a href="../#questions">Questions</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn-ghost nav-cta" href="https://github.com/deskosproject/deskos-core">Source</a>
+  </div>
+</header>
+
+<main id="main">
+<section class="section">
+  <div class="wrap narrow">
+    <p class="eyebrow">Verify</p>
+    <h1 class="h2">Check it yourself.</h1>
+    <p class="body">Nothing here asks you to trust a web page. Three checks, each
+      proving one thing, and a short list of what none of them proves.</p>
+    <p class="body">You need the file from
+      <a href="https://download.deskos.org/">download.deskos.org</a>, its
+      <code>SHA256SUMS</code> and <code>stable.json</code> beside it, and
+      <a href="https://docs.sigstore.dev/cosign/installation/">cosign</a> for the
+      second check.</p>
+
+    <h2 class="h2">1. The file is the one we published</h2>
+    <pre>sha256sum -c SHA256SUMS</pre>
+    <p class="body"><strong>Proves:</strong> the bytes on your disk are the bytes
+      named on the download page. A mirror, a proxy or a broken connection cannot
+      change the file without changing the hash.</p>
+    <p class="body"><strong>If it fails:</strong> download again. A mismatch is
+      not a slow disk or a partial copy you can fix; it is a different file, and
+      you should not write it to a USB stick.</p>
+
+    <h2 class="h2">2. DeskOS built it</h2>
+    <pre>cosign verify \
+  quay.io/deskos/deskos-core-centos-stream-10-iso@&lt;artifactDigest from stable.json&gt; \
+  --certificate-oidc-issuer https://token.actions.githubusercontent.com \
+  --certificate-identity https://github.com/deskosproject/deskos-core/.github/workflows/iso.yml@refs/heads/main</pre>
+    <p class="body"><strong>Proves:</strong> the installer was produced by our
+      release workflow and has not been touched since. There is no DeskOS signing
+      key to trust or to leak: the certificate is issued to that workflow by the
+      public infrastructure, and the signature is recorded in a public
+      transparency log.</p>
+    <p class="body"><strong>Why that identity:</strong> the installer is built by
+      the workflow that signs it, <code>iso.yml</code>. The image inside is signed
+      by the publishing gate, <code>supply-chain.yml</code>, and the check for it
+      is the same with that name.</p>
+
+    <h2 class="h2">3. The image inside is the one that was tested</h2>
+    <p class="body"><code>stable.json</code> names the image digest the installer
+      carries, and the installer itself repeats it in its
+      <code>org.deskos.image.digest</code> annotation. Open
+      <a href="../evidence/">Evidence</a> for that digest: what booted, what the
+      session check asserted, which defaults and extensions were verified, and
+      what was not measured.</p>
+    <p class="body"><strong>Proves:</strong> the thing you install is the thing
+      that passed the gate, not a nearby build.</p>
+
+    <h2 class="h2">What none of this proves</h2>
+    <ul class="body">
+      <li><strong>That the software has no bugs.</strong> A signature says who
+        built it, not that it is correct or free of vulnerabilities.</li>
+      <li><strong>Your hardware.</strong> Boot, session and installer are tested
+        in a virtual machine; a real machine is validated one model at a time,
+        and the evidence says which.</li>
+      <li><strong>The base distribution.</strong> CentOS Stream 10 packages are
+        CentOS's to fix. The evidence lists the ones we accept, with a reason and
+        a review date.</li>
+      <li><strong>That updates apply themselves.</strong> They are staged on your
+        machine and applied at the next reboot; that is your update policy, not
+        this download.</li>
+    </ul>
+
+    <h2 class="h2">If something does not match</h2>
+    <p class="body">Do not boot it. Open an
+      <a href="https://github.com/deskosproject/deskos-core/issues">issue</a> with
+      the digest and the output of the check that failed. A torrent, a mirror
+      with a different hash, or a page that asks you to skip the checksum is not
+      us.</p>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-grid">
+    <div>
+      <img class="wordmark" src="../assets/lockup.svg" alt="DeskOS" width="170" height="26">
+      <p class="footer-note">Workstations compiled from declared intent.</p>
+    </div>
+    <nav aria-label="Documentation">
+      <h2 class="mono footer-title">Docs</h2>
+      <ul>
+        <li><a href="https://github.com/deskosproject/deskos-core/blob/main/docs/platforms.md">Platforms</a></li>
+        <li><a href="https://github.com/deskosproject/deskos-core/blob/main/docs/architecture.md">Architecture</a></li>
+        <li><a href="https://github.com/deskosproject/deskos-core/blob/main/docs/install.md">Installing</a></li>
+        <li><a href="../evidence/">Evidence</a></li>
+        <li><a href="../verify/">Verify a download</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Project">
+      <h2 class="mono footer-title">Project</h2>
+      <ul>
+        <li><a href="https://github.com/deskosproject/deskos-core">Source</a></li>
+        <li><a href="https://github.com/deskosproject/deskos-core/blob/main/LICENSE">Apache-2.0</a></li>
+        <li><a href="https://github.com/deskosproject/deskos-core/issues">Issues</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="wrap footer-bottom mono">
+    <span>© 2026 DeskOS</span>
+    <span>Apache-2.0</span>
+  </div>
+</footer>
+</body>
+</html>
