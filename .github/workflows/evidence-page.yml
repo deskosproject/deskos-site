@@ -10,9 +10,14 @@ name: evidence-page
 # repository, and a page that changes silently is a page nobody checked.
 on:
   schedule:
-    # Monday 10:00 UTC: the 06:17 gate takes about two hours, the installer
-    # follows it, and the promotion needs both to be done. 09:00 raced them.
-    - cron: '0 10 * * 1'
+    # Daily, not weekly. GitHub's scheduler runs hours late and drops ticks, so a
+    # weekly run can land before the promotion it is meant to describe and leave
+    # the page a week behind. Running daily costs nothing when there is no change
+    # (the workflow exits without a diff) and catches up within a day when the
+    # Monday gate or its promotion lands late.
+    # 10:00 UTC. The timezone is named so nobody has to guess which 10:00.
+    - cron: '0 10 * * *'
+      timezone: "Etc/UTC"
   workflow_dispatch:
 
 permissions:
