@@ -41,11 +41,11 @@
       <p class="lede">Every published digest carries the checks it passed and the ones it
         did not. This page is generated from the public evidence index; there is no
         hand-written claim to drift from the record.</p>
-      <p class="mono">sha256:871e59cce39d5df1bb4f34d63008641227c5eca785f39f67ed88b89fa6bb115b</p>
+      <p class="mono">sha256:775bc9b654d8235648481791955337147aed77c0ebf6a202a4ce849b661f1e9d</p>
       <div class="actions">
-        <a class="btn btn-solid" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/871e59cce39d5df1bb4f34d63008641227c5eca785f39f67ed88b89fa6bb115b/index.json">The index</a>
-        <a class="btn btn-ghost" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/871e59cce39d5df1bb4f34d63008641227c5eca785f39f67ed88b89fa6bb115b/session.json">Session report</a>
-        <a class="btn btn-ghost" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/871e59cce39d5df1bb4f34d63008641227c5eca785f39f67ed88b89fa6bb115b/grype.txt">Scan report</a>
+        <a class="btn btn-solid" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/775bc9b654d8235648481791955337147aed77c0ebf6a202a4ce849b661f1e9d/index.json">The index</a>
+        <a class="btn btn-ghost" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/775bc9b654d8235648481791955337147aed77c0ebf6a202a4ce849b661f1e9d/session.json">Session report</a>
+        <a class="btn btn-ghost" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/775bc9b654d8235648481791955337147aed77c0ebf6a202a4ce849b661f1e9d/grype.txt">Scan report</a>
       </div>
     </div>
   </div>
@@ -58,12 +58,12 @@
     <div class="table-wrap" role="region" aria-label="Published identity" tabindex="0">
       <table class="platforms">
         <tbody>
-          <tr><th scope="row">Image</th><td class="mono">quay.io/deskos/deskos-core-centos-stream-10@sha256:871e59cce39d5df1bb4f34d63008641227c5eca785f39f67ed88b89fa6bb115b</td></tr>
-          <tr><th scope="row">Digest</th><td class="mono">sha256:871e59cce39d5df1bb4f34d63008641227c5eca785f39f67ed88b89fa6bb115b</td></tr>
-          <tr><th scope="row">Commit</th><td class="mono">2ef9f7559b28a6ad9d503a760dfb92f9ea04d5c0</td></tr>
+          <tr><th scope="row">Image</th><td class="mono">quay.io/deskos/deskos-core-centos-stream-10@sha256:775bc9b654d8235648481791955337147aed77c0ebf6a202a4ce849b661f1e9d</td></tr>
+          <tr><th scope="row">Digest</th><td class="mono">sha256:775bc9b654d8235648481791955337147aed77c0ebf6a202a4ce849b661f1e9d</td></tr>
+          <tr><th scope="row">Commit</th><td class="mono">b09081a76a147f411578fed82f90e843fcca5689</td></tr>
           <tr><th scope="row">Platform</th><td>centos-stream-10</td></tr>
           <tr><th scope="row">Workstation</th><td>deskos-core-centos-stream-10</td></tr>
-          <tr><th scope="row">Built by</th><td class="mono">supply-chain run 40716569103</td></tr>
+          <tr><th scope="row">Built by</th><td class="mono">supply-chain run 41140733589</td></tr>
         </tbody>
       </table>
     </div>
@@ -86,12 +86,12 @@
           <tr>
             <th scope="row">Boot</th>
             <td><span class="dot dot-green"></span>pass</td>
-            <td class="mono">splash 13.1 s · graphical 19.9 s · shutdown 1.3 s</td>
+            <td class="mono">splash 11.8 s · graphical 19.7 s · shutdown 1.7 s</td>
           </tr>
           <tr>
             <th scope="row">Session</th>
             <td><span class="dot dot-green"></span>pass</td>
-            <td class="mono">wayland · GNOME Shell 49.5 · 37 checks passed, no failed check</td>
+            <td class="mono">wayland · GNOME Shell 49.5 · 59 checks passed, no failed check</td>
           </tr>
           <tr>
             <th scope="row">First boot</th>
@@ -116,8 +116,26 @@
         <thead><tr><th scope="col">Check</th><th scope="col">Result</th><th scope="col">Detail</th></tr></thead>
         <tbody>
           <tr><th scope="row">session results reported</th><td><span class="dot dot-green"></span>pass</td><td class="mono">session_type=wayland</td></tr>
+          <tr><th scope="row">the session exposes its applications through AT-SPI</th><td><span class="dot dot-green"></span>pass</td><td class="mono">e2e_apps=9 e2e_error=none e2e_app_names=evolution-alarm-notify,gnome-shell,gsd-color,gsd-keyboard,gsd-media-keys,gsd-power,gsd-wacom,ibus-extension-gtk3,xdg-desktop-portal-gtk</td></tr>
+          <tr><th scope="row">an application opens from its desktop entry</th><td><span class="dot dot-green"></span>pass</td><td class="mono">e2e_launch_ok=yes e2e_launch_app=gnome-calculator e2e_launch_frames=Calculator e2e_launch_reason=none e2e_launch_exit=none</td></tr>
           <tr><th scope="row">user extensions allowed</th><td><span class="dot dot-green"></span>pass</td><td class="mono">disable-user-extensions=false</td></tr>
-          <tr><th scope="row">plan binary /usr/bin/deskos</th><td><span class="dot dot-green"></span>pass</td><td class="mono">sha256 eead05aebf12d8dc32d48e35865039fb1e6b021490eb3a66dafd811a204f9b47, mode 755, as the plan declares</td></tr>
+          <tr><th scope="row">plan artifact file /usr/bin/deskos</th><td><span class="dot dot-green"></span>pass</td><td class="mono">sha256 344a099ba4ae4846b65c721ec14e3c92e9fd55c5e2c1d086b39a56b6cebe2d27, mode 755, as the plan declares</td></tr>
+          <tr><th scope="row">plan artifact file /usr/local/share/fonts/Adwaita-OFL.txt</th><td><span class="dot dot-green"></span>pass</td><td class="mono">sha256 459687971d21c53923c1d1c9c062ec273a7ea03226b36195b79ec6af7d98dc81, mode 644, as the plan declares</td></tr>
+          <tr><th scope="row">plan artifact file /usr/local/share/fonts/AdwaitaMono-Bold.ttf</th><td><span class="dot dot-green"></span>pass</td><td class="mono">sha256 9963c9a54805dd29cd803aa5f816c9f7c74c7bdae015467a485ae729868d2325, mode 644, as the plan declares</td></tr>
+          <tr><th scope="row">plan artifact file /usr/local/share/fonts/AdwaitaMono-BoldItalic.ttf</th><td><span class="dot dot-green"></span>pass</td><td class="mono">sha256 7108404fc597fa8586b822c6d03b676caad353be1bc4a89adfab77084663a04e, mode 644, as the plan declares</td></tr>
+          <tr><th scope="row">plan artifact file /usr/local/share/fonts/AdwaitaMono-Italic.ttf</th><td><span class="dot dot-green"></span>pass</td><td class="mono">sha256 20795e28c01f7df230002925d93e16cfe1bc1ab9e84426ac106344fb419cb57b, mode 644, as the plan declares</td></tr>
+          <tr><th scope="row">plan artifact file /usr/local/share/fonts/AdwaitaMono-Regular.ttf</th><td><span class="dot dot-green"></span>pass</td><td class="mono">sha256 ffc549b7fc28057d624086111f1ba0b1f752d2d7ff7c5363dfa064e4dca17d47, mode 644, as the plan declares</td></tr>
+          <tr><th scope="row">plan artifact file /usr/local/share/fonts/AdwaitaSans-Italic.ttf</th><td><span class="dot dot-green"></span>pass</td><td class="mono">sha256 a3dc55af75f746756596dca37f3ff7c0f0b015f2fd2e87f2cf0ef4a69d4f3015, mode 644, as the plan declares</td></tr>
+          <tr><th scope="row">plan artifact file /usr/local/share/fonts/AdwaitaSans-Regular.ttf</th><td><span class="dot dot-green"></span>pass</td><td class="mono">sha256 8381c33b9a44f066f2b99dba3d416a2342891e28c956a35dfd8d16ee2987e6d4, mode 644, as the plan declares</td></tr>
+          <tr><th scope="row">plan artifact file /usr/local/share/fonts/Gelasio-Italic.ttf</th><td><span class="dot dot-green"></span>pass</td><td class="mono">sha256 52559e845a4d33514e5f93bb9ae7dbeae1894a53f2c565a15f18af40cd337c09, mode 644, as the plan declares</td></tr>
+          <tr><th scope="row">plan artifact file /usr/local/share/fonts/Gelasio-OFL.txt</th><td><span class="dot dot-green"></span>pass</td><td class="mono">sha256 b393cb01867c919b44381512120dc3e4c954c7b47e2035c405f3a324799a4d29, mode 644, as the plan declares</td></tr>
+          <tr><th scope="row">plan artifact file /usr/local/share/fonts/Gelasio.ttf</th><td><span class="dot dot-green"></span>pass</td><td class="mono">sha256 4daecea457258c9ebeb8bc99ed3fd24353618bfad3ea4b93fa0b5d0468fc04e4, mode 644, as the plan declares</td></tr>
+          <tr><th scope="row">plan artifact file /usr/local/share/fonts/Overpass-Italic.ttf</th><td><span class="dot dot-green"></span>pass</td><td class="mono">sha256 3b45ac4193930bbeb491b5c76227afd5991607712f0d16d6bc5d74db6bbd8172, mode 644, as the plan declares</td></tr>
+          <tr><th scope="row">plan artifact file /usr/local/share/fonts/Overpass-OFL.txt</th><td><span class="dot dot-green"></span>pass</td><td class="mono">sha256 86e5ff25c701ec446d20b1a85b02ee6d36de8503a7288a4c948f5459809af1f0, mode 644, as the plan declares</td></tr>
+          <tr><th scope="row">plan artifact file /usr/local/share/fonts/Overpass.ttf</th><td><span class="dot dot-green"></span>pass</td><td class="mono">sha256 970717df17a7f9911dee45f60695d05bfa9d745fa0a11fc5c348371fa21f0073, mode 644, as the plan declares</td></tr>
+          <tr><th scope="row">font family Adwaita Sans is installed</th><td><span class="dot dot-green"></span>pass</td><td class="mono">Adwaita Sans is one of the 240 families fontconfig carries; declared by appearance.fonts.document</td></tr>
+          <tr><th scope="row">font family Adwaita Sans is installed</th><td><span class="dot dot-green"></span>pass</td><td class="mono">Adwaita Sans is one of the 240 families fontconfig carries; declared by appearance.fonts.interface</td></tr>
+          <tr><th scope="row">font family Adwaita Mono is installed</th><td><span class="dot dot-green"></span>pass</td><td class="mono">Adwaita Mono is one of the 240 families fontconfig carries; declared by appearance.fonts.monospace</td></tr>
           <tr><th scope="row">extension loads (appindicatorsupport@rgcjonas.gmail.com)</th><td><span class="dot dot-green"></span>pass</td><td class="mono">Enabled/State=Yes/ACTIVE</td></tr>
           <tr><th scope="row">extension loads (dash-to-dock@micxgx.gmail.com)</th><td><span class="dot dot-green"></span>pass</td><td class="mono">Enabled/State=Yes/ACTIVE</td></tr>
           <tr><th scope="row">tray watcher serves the session bus</th><td><span class="dot dot-green"></span>pass</td><td class="mono">tray_watcher=present</td></tr>
@@ -128,12 +146,15 @@
           <tr><th scope="row">screen locks on request</th><td><span class="dot dot-green"></span>pass</td><td class="mono">screen_locked=true</td></tr>
           <tr><th scope="row">deskos report names the installed workstation</th><td><span class="dot dot-green"></span>pass</td><td class="mono">got deskos-core-centos-stream-10 (exit=0)</td></tr>
           <tr><th scope="row">deskos check runs on the booted image</th><td><span class="dot dot-green"></span>pass</td><td class="mono">exit=1</td></tr>
-          <tr><th scope="row">declared system Flatpaks are installed</th><td><span class="dot dot-green"></span>pass</td><td class="mono">missing=none</td></tr>
+          <tr><th scope="row">declared system Flatpaks are installed</th><td><span class="dot dot-green"></span>pass</td><td class="mono">missing=none; preinstall=success/inactive</td></tr>
           <tr><th scope="row">the guest says whether Firefox is installed</th><td><span class="dot dot-green"></span>pass</td><td class="mono">firefox_present=yes</td></tr>
           <tr><th scope="row">Firefox runs headless</th><td><span class="dot dot-green"></span>pass</td><td class="mono">exit=0 screenshot=yes</td></tr>
           <tr><th scope="row">Firefox fetches the harness page</th><td><span class="dot dot-green"></span>pass</td><td class="mono">fetch=ok content=ok requests=1 screenshot=yes</td></tr>
           <tr><th scope="row">plan default /org/gnome/desktop/background/picture-uri</th><td><span class="dot dot-green"></span>pass</td><td class="mono">the image&#x27;s distro database carries &#x27;file:///usr/share/deskos/backgrounds/deskos-light.svg&#x27;, as the plan declares; the session sees &#x27;file:///usr/share/deskos/backgrounds/deskos-light.svg&#x27;, as the plan declares</td></tr>
           <tr><th scope="row">plan default /org/gnome/desktop/background/picture-uri-dark</th><td><span class="dot dot-green"></span>pass</td><td class="mono">the image&#x27;s distro database carries &#x27;file:///usr/share/deskos/backgrounds/deskos-dark.svg&#x27;, as the plan declares; the session sees &#x27;file:///usr/share/deskos/backgrounds/deskos-dark.svg&#x27;, as the plan declares</td></tr>
+          <tr><th scope="row">plan default /org/gnome/desktop/interface/document-font-name</th><td><span class="dot dot-green"></span>pass</td><td class="mono">the image&#x27;s distro database carries &#x27;Adwaita Sans 12&#x27;, as the plan declares; the session sees &#x27;Adwaita Sans 12&#x27;, as the plan declares</td></tr>
+          <tr><th scope="row">plan default /org/gnome/desktop/interface/font-name</th><td><span class="dot dot-green"></span>pass</td><td class="mono">the image&#x27;s distro database carries &#x27;Adwaita Sans 11&#x27;, as the plan declares; the session sees &#x27;Adwaita Sans 11&#x27;, as the plan declares</td></tr>
+          <tr><th scope="row">plan default /org/gnome/desktop/interface/monospace-font-name</th><td><span class="dot dot-green"></span>pass</td><td class="mono">the image&#x27;s distro database carries &#x27;Adwaita Mono 11&#x27;, as the plan declares; the session sees &#x27;Adwaita Mono 11&#x27;, as the plan declares</td></tr>
           <tr><th scope="row">plan default /org/gnome/desktop/screensaver/lock-delay</th><td><span class="dot dot-green"></span>pass</td><td class="mono">the image&#x27;s distro database carries uint32 0, as the plan declares; the session sees uint32 0, as the plan declares</td></tr>
           <tr><th scope="row">plan default /org/gnome/desktop/screensaver/lock-enabled</th><td><span class="dot dot-green"></span>pass</td><td class="mono">the image&#x27;s distro database carries true, as the plan declares; the session sees true, as the plan declares</td></tr>
           <tr><th scope="row">plan default /org/gnome/desktop/screensaver/picture-uri</th><td><span class="dot dot-green"></span>pass</td><td class="mono">the image&#x27;s distro database carries &#x27;file:///usr/share/deskos/backgrounds/deskos-light.svg&#x27;, as the plan declares; the session sees &#x27;file:///usr/share/deskos/backgrounds/deskos-light.svg&#x27;, as the plan declares</td></tr>
@@ -148,6 +169,7 @@
           <tr><th scope="row">plan default /org/gnome/shell/extensions/dash-to-dock/show-trash</th><td><span class="dot dot-green"></span>pass</td><td class="mono">the image&#x27;s distro database carries false, as the plan declares; the session sees false, as the plan declares</td></tr>
           <tr><th scope="row">plan default /org/gnome/software/allow-updates</th><td><span class="dot dot-green"></span>pass</td><td class="mono">the image&#x27;s distro database carries true, as the plan declares; the session sees true, as the plan declares</td></tr>
           <tr><th scope="row">plan default /org/gnome/software/download-updates</th><td><span class="dot dot-green"></span>pass</td><td class="mono">the image&#x27;s distro database carries false, as the plan declares; the session sees false, as the plan declares</td></tr>
+          <tr><th scope="row">greeter default /org/gnome/login-screen/logo</th><td><span class="dot dot-green"></span>pass</td><td class="mono">the greeter reads &#x27;/usr/share/deskos/branding/deskos-login-logo.svg&#x27;, as the plan declares</td></tr>
           <tr><th scope="row">plan vendor default org.gnome.desktop.background picture-uri</th><td><span class="dot dot-green"></span>pass</td><td class="mono">the compiled schema default carries &#x27;file:///usr/share/deskos/backgrounds/deskos-light.svg&#x27;, as the plan declares; the session sees &#x27;file:///usr/share/deskos/backgrounds/deskos-light.svg&#x27;, as the plan declares</td></tr>
           <tr><th scope="row">plan vendor default org.gnome.desktop.background picture-uri-dark</th><td><span class="dot dot-green"></span>pass</td><td class="mono">the compiled schema default carries &#x27;file:///usr/share/deskos/backgrounds/deskos-dark.svg&#x27;, as the plan declares; the session sees &#x27;file:///usr/share/deskos/backgrounds/deskos-dark.svg&#x27;, as the plan declares</td></tr>
           <tr><th scope="row">no unexpected failed system units</th><td><span class="dot dot-green"></span>pass</td><td class="mono">failed=mcelog.service; known non-blocking: mcelog.service (see Platform diagnostics)</td></tr>
@@ -165,24 +187,24 @@
     <p class="body section-lede">The index is the entry point; every object is addressed by
       the same digest and was fetched back and verified after publication.</p>
     <ul class="body">
-            <li><a class="mono" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/871e59cce39d5df1bb4f34d63008641227c5eca785f39f67ed88b89fa6bb115b/bootcheck.summary.json">bootcheck.summary.json</a></li>
-            <li><a class="mono" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/871e59cce39d5df1bb4f34d63008641227c5eca785f39f67ed88b89fa6bb115b/commit.txt">commit.txt</a></li>
-            <li><a class="mono" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/871e59cce39d5df1bb4f34d63008641227c5eca785f39f67ed88b89fa6bb115b/cosign-verify.txt">cosign-verify.txt</a></li>
-            <li><a class="mono" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/871e59cce39d5df1bb4f34d63008641227c5eca785f39f67ed88b89fa6bb115b/cves.json">cves.json</a></li>
-            <li><a class="mono" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/871e59cce39d5df1bb4f34d63008641227c5eca785f39f67ed88b89fa6bb115b/declared.sbom.cdx.json">declared.sbom.cdx.json</a></li>
-            <li><a class="mono" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/871e59cce39d5df1bb4f34d63008641227c5eca785f39f67ed88b89fa6bb115b/digest.txt">digest.txt</a></li>
-            <li><a class="mono" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/871e59cce39d5df1bb4f34d63008641227c5eca785f39f67ed88b89fa6bb115b/effective-exceptions.json">effective-exceptions.json</a></li>
-            <li><a class="mono" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/871e59cce39d5df1bb4f34d63008641227c5eca785f39f67ed88b89fa6bb115b/firstboot.json">firstboot.json</a></li>
-            <li><a class="mono" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/871e59cce39d5df1bb4f34d63008641227c5eca785f39f67ed88b89fa6bb115b/gate.grype.yaml">gate.grype.yaml</a></li>
-            <li><a class="mono" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/871e59cce39d5df1bb4f34d63008641227c5eca785f39f67ed88b89fa6bb115b/generated-manifest.json">generated-manifest.json</a></li>
-            <li><a class="mono" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/871e59cce39d5df1bb4f34d63008641227c5eca785f39f67ed88b89fa6bb115b/grype.txt">grype.txt</a></li>
-            <li><a class="mono" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/871e59cce39d5df1bb4f34d63008641227c5eca785f39f67ed88b89fa6bb115b/identity.json">identity.json</a></li>
-            <li><a class="mono" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/871e59cce39d5df1bb4f34d63008641227c5eca785f39f67ed88b89fa6bb115b/image.txt">image.txt</a></li>
-            <li><a class="mono" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/871e59cce39d5df1bb4f34d63008641227c5eca785f39f67ed88b89fa6bb115b/installed.sbom.cdx.json">installed.sbom.cdx.json</a></li>
-            <li><a class="mono" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/871e59cce39d5df1bb4f34d63008641227c5eca785f39f67ed88b89fa6bb115b/plan.json">plan.json</a></li>
-            <li><a class="mono" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/871e59cce39d5df1bb4f34d63008641227c5eca785f39f67ed88b89fa6bb115b/session.json">session.json</a></li>
+            <li><a class="mono" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/775bc9b654d8235648481791955337147aed77c0ebf6a202a4ce849b661f1e9d/bootcheck.summary.json">bootcheck.summary.json</a></li>
+            <li><a class="mono" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/775bc9b654d8235648481791955337147aed77c0ebf6a202a4ce849b661f1e9d/commit.txt">commit.txt</a></li>
+            <li><a class="mono" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/775bc9b654d8235648481791955337147aed77c0ebf6a202a4ce849b661f1e9d/cosign-verify.txt">cosign-verify.txt</a></li>
+            <li><a class="mono" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/775bc9b654d8235648481791955337147aed77c0ebf6a202a4ce849b661f1e9d/cves.json">cves.json</a></li>
+            <li><a class="mono" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/775bc9b654d8235648481791955337147aed77c0ebf6a202a4ce849b661f1e9d/declared.sbom.cdx.json">declared.sbom.cdx.json</a></li>
+            <li><a class="mono" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/775bc9b654d8235648481791955337147aed77c0ebf6a202a4ce849b661f1e9d/digest.txt">digest.txt</a></li>
+            <li><a class="mono" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/775bc9b654d8235648481791955337147aed77c0ebf6a202a4ce849b661f1e9d/effective-exceptions.json">effective-exceptions.json</a></li>
+            <li><a class="mono" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/775bc9b654d8235648481791955337147aed77c0ebf6a202a4ce849b661f1e9d/firstboot.json">firstboot.json</a></li>
+            <li><a class="mono" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/775bc9b654d8235648481791955337147aed77c0ebf6a202a4ce849b661f1e9d/gate.grype.yaml">gate.grype.yaml</a></li>
+            <li><a class="mono" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/775bc9b654d8235648481791955337147aed77c0ebf6a202a4ce849b661f1e9d/generated-manifest.json">generated-manifest.json</a></li>
+            <li><a class="mono" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/775bc9b654d8235648481791955337147aed77c0ebf6a202a4ce849b661f1e9d/grype.txt">grype.txt</a></li>
+            <li><a class="mono" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/775bc9b654d8235648481791955337147aed77c0ebf6a202a4ce849b661f1e9d/identity.json">identity.json</a></li>
+            <li><a class="mono" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/775bc9b654d8235648481791955337147aed77c0ebf6a202a4ce849b661f1e9d/image.txt">image.txt</a></li>
+            <li><a class="mono" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/775bc9b654d8235648481791955337147aed77c0ebf6a202a4ce849b661f1e9d/installed.sbom.cdx.json">installed.sbom.cdx.json</a></li>
+            <li><a class="mono" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/775bc9b654d8235648481791955337147aed77c0ebf6a202a4ce849b661f1e9d/plan.json">plan.json</a></li>
+            <li><a class="mono" href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/775bc9b654d8235648481791955337147aed77c0ebf6a202a4ce849b661f1e9d/session.json">session.json</a></li>
     </ul>
-    <p class="table-note">Signature and attestations: <a href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/871e59cce39d5df1bb4f34d63008641227c5eca785f39f67ed88b89fa6bb115b/cosign-verify.txt">cosign-verify.txt</a>.</p>
+    <p class="table-note">Signature and attestations: <a href="https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/775bc9b654d8235648481791955337147aed77c0ebf6a202a4ce849b661f1e9d/cosign-verify.txt">cosign-verify.txt</a>.</p>
   </div>
 </section>
 
@@ -211,12 +233,12 @@
     <p class="body">Read the record and check the signature yourself:</p>
     <figure class="terminal">
       <figcaption class="mono">verify the published digest</figcaption>
-      <pre><span class="c-prompt">$</span> <span class="c-cmd">cosign verify</span> quay.io/deskos/deskos-core-centos-stream-10@sha256:871e59cce39d5df1bb4f34d63008641227c5eca785f39f67ed88b89fa6bb115b \
+      <pre><span class="c-prompt">$</span> <span class="c-cmd">cosign verify</span> quay.io/deskos/deskos-core-centos-stream-10@sha256:775bc9b654d8235648481791955337147aed77c0ebf6a202a4ce849b661f1e9d \
     --certificate-oidc-issuer https://token.actions.githubusercontent.com \
     --certificate-identity \
     'https://github.com/deskosproject/deskos-core/.github/workflows/supply-chain.yml@refs/heads/main'
 
-<span class="c-prompt">$</span> <span class="c-cmd">curl</span> -fsS https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/871e59cce39d5df1bb4f34d63008641227c5eca785f39f67ed88b89fa6bb115b/index.json | <span class="c-cmd">jq</span> .digest</pre>
+<span class="c-prompt">$</span> <span class="c-cmd">curl</span> -fsS https://evidence.deskos.org/deskos/deskos-core-centos-stream-10/sha256/775bc9b654d8235648481791955337147aed77c0ebf6a202a4ce849b661f1e9d/index.json | <span class="c-cmd">jq</span> .digest</pre>
     </figure>
     <p class="table-note">Generated by <span class="mono">tools/build-evidence.py</span> from
       the public index. Do not edit this page by hand.</p>
