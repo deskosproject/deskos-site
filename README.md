@@ -24,6 +24,7 @@ Rules the page holds itself to:
 
 ## Status
 
-First version, not deployed. The download section will read a published index
-once the installer ISOs exist; today it points at the image and
-`bootc-image-builder`.
+The page lists the three published platforms (CentOS Stream 10, Fedora 45 and
+AlmaLinux 10) and RHEL 10 as private. The download section points at the Core
+image and `bootc-image-builder`; only CentOS Stream 10 also has a published
+installer ISO.
