@@ -147,10 +147,12 @@
         <p class="body">The community images are published as bootable containers. Write one to a
           disk, boot it, and every later update is a new image staged beside the old one — the
           previous one stays one boot away.</p>
-        <p class="body">Two installers are published, each built from a published image and
-          installed and booted in a VM before release: <strong>CentOS Stream 10</strong>
-          and <strong>Fedora 45</strong>, both mirrored with a checksum at
-          <a href="https://download.deskos.org/">download.deskos.org</a>.
+        <p class="body">Two installers are published, both built from a published image and
+          mirrored with a checksum at <a href="https://download.deskos.org/">download.deskos.org</a>:
+          <strong>CentOS Stream 10</strong>, installed and booted in a VM before release, and
+          <strong>Fedora 45</strong>, where a test-only ISO from the same image installed
+          unattended and reached the installed system. The published Fedora ISO asks for the
+          disk and LUKS, so it is the person installing who finishes it.
           AlmaLinux 10 publishes a bootc image you write a disk from with
           <code>bootc-image-builder</code>; Core publishes no installer ISO for it.</p>
         <p><a class="btn btn-solid" href="https://download.deskos.org/">Download the CS10 ISO</a>
