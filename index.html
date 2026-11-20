@@ -133,8 +133,8 @@
         </tbody>
       </table>
     </div>
-    <p class="table-note">RHEL-derived images are never published. Fedora 45 and AlmaLinux 10
-      publish an image only; Core publishes no installer ISO for either.</p>
+    <p class="table-note">RHEL-derived images are never published. CentOS Stream 10 and
+      Fedora 45 publish a signed installer ISO; AlmaLinux 10 publishes an image only.</p>
     <p class="table-note digest">What is published today is
       <code class="mono" data-stable-digest>sha256:2ce8c497f2f1473b58d6363ee759661c38424bbe9d29e1b4ff426d7dc70c87d8</code> — built, booted and signed, with the
       evidence of what was checked, and what was not, in <a href="evidence/">Evidence</a>.</p>
@@ -150,11 +150,15 @@
         <p class="body">The community images are published as bootable containers. Write one to a
           disk, boot it, and every later update is a new image staged beside the old one — the
           previous one stays one boot away.</p>
-        <p class="body">The <strong>DeskOS CentOS Stream 10 installer ISO</strong> is available now: it was
-          installed and booted in a VM before publication. Fedora 45 and AlmaLinux 10
-          publish a bootc image you write a disk from with <code>bootc-image-builder</code>;
-          Core publishes no installer ISO for either.</p>
-        <p><a class="btn btn-solid" href="https://download.deskos.org/">Download the CS10 ISO</a></p>
+        <p class="body">Two installers are published, each built from a published image and
+          installed and booted in a VM before release: <strong>CentOS Stream 10</strong>,
+          mirrored at <a href="https://download.deskos.org/">download.deskos.org</a>, and
+          <strong>Fedora 45</strong>, a signed OCI artifact at
+          <code class="mono">quay.io/deskos/deskos-core-fedora-45-installer</code>.
+          AlmaLinux 10 publishes a bootc image you write a disk from with
+          <code>bootc-image-builder</code>; Core publishes no installer ISO for it.</p>
+        <p><a class="btn btn-solid" href="https://download.deskos.org/">Download the CS10 ISO</a>
+          <a class="btn btn-ghost" href="https://quay.io/repository/deskos/deskos-core-fedora-45-installer">Fedora 45 installer</a></p>
         <p class="table-note">Before you boot it, check the checksum and the
           signature: <a href="verify/">verify a download</a>.</p>
       </div>
@@ -189,10 +193,11 @@
     </details>
     <details>
       <summary>Where are the ISOs?</summary>
-      <p>The DeskOS CentOS Stream 10 installer ISO is published at
+      <p>The CentOS Stream 10 installer ISO is published at
         <a href="https://download.deskos.org/">download.deskos.org</a>, with its checksum.
-        Fedora 45 and AlmaLinux 10 publish images only; no installer ISOs are published
-        for them, and RHEL ISOs are never published.</p>
+        The Fedora 45 installer is a signed OCI artifact at
+        <a href="https://quay.io/repository/deskos/deskos-core-fedora-45-installer">quay.io/deskos/deskos-core-fedora-45-installer</a>.
+        AlmaLinux 10 publishes an image only, and RHEL ISOs are never published.</p>
     </details>
   </div>
 </section>

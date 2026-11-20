@@ -25,6 +25,6 @@ Rules the page holds itself to:
 ## Status
 
 The page lists the three published platforms (CentOS Stream 10, Fedora 45 and
-AlmaLinux 10) and RHEL 10 as private. The download section points at the Core
-image and `bootc-image-builder`; only CentOS Stream 10 also has a published
-installer ISO.
+AlmaLinux 10) and RHEL 10 as private. CentOS Stream 10 and Fedora 45 have a
+published installer ISO; AlmaLinux 10 points at the Core image and
+`bootc-image-builder`.
