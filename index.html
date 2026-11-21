@@ -71,7 +71,7 @@
         <h2 class="h2">YAML in.<br>One image out.</h2>
         <p class="body">You describe the machine; DeskOS checks it, merges the layers and writes a
           generated Containerfile. That file is the whole output: read it, diff it, build it with
-          podman. Every step in it was generated from a resource, not authored as a script, and
+          Podman. Every step in it was generated from a resource, not authored as a script, and
           there is no runtime, no agent and no controller.</p>
         <p class="light-note mono">deterministic · offline · no scripts · nothing runs on the machine</p>
       </div>
@@ -292,7 +292,7 @@ RUN … &amp;&amp; bootc container lint
     </details>
     <details>
       <summary>Does anything of DeskOS run on the machine?</summary>
-      <p>No. DeskOS writes a Containerfile; podman builds it; bootc boots the image. The optional
+      <p>No. DeskOS writes a Containerfile; Podman builds it; bootc boots the image. The optional
         <code>deskos</code> companion only reports what the image contains.</p>
     </details>
     <details>
