@@ -220,6 +220,51 @@ h1 {
 .c-cmd { color: var(--accent); }
 .c-flag { color: var(--blue); }
 
+/* Code comparison: the YAML and the file it produces. */
+.code-compare {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1.12fr);
+  gap: clamp(.8rem, 2vw, 1.4rem); align-items: stretch;
+  margin-top: clamp(2rem, 4vw, 3rem);
+}
+.code-pane {
+  margin: 0; min-width: 0; display: flex; flex-direction: column;
+  background: var(--panel); border: 1px solid var(--line);
+  border-radius: var(--radius); overflow: hidden;
+}
+.code-pane figcaption {
+  display: flex; gap: .55rem; align-items: baseline;
+  padding: .6rem .9rem; border-bottom: 1px solid var(--line-soft);
+  background: var(--panel-2); color: var(--muted); font-size: .78rem;
+}
+.code-pane figcaption .mono { color: var(--accent); }
+.code-pane pre {
+  margin: 0; padding: .85rem .9rem; flex: 1; overflow-x: auto;
+  font-family: var(--mono); font-size: .7rem; line-height: 1.65; color: #33414c;
+}
+.code-pane code { font: inherit; }
+.c-key { color: var(--accent); font-weight: 700; }
+.code-arrow {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: .35rem; color: var(--muted); text-align: center;
+}
+.code-arrow .mono { font-size: .62rem; letter-spacing: .1em; text-transform: uppercase; }
+.code-arrow::after { content: "→"; font-size: 1.2rem; color: var(--accent); line-height: 1; }
+
+/* Why not something else */
+.why-title {
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  font-size: clamp(1.5rem, 2.6vw, 2rem); letter-spacing: -.02em; font-weight: 800;
+  margin: clamp(2.4rem, 4vw, 3.4rem) 0 1.2rem;
+}
+.why {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+  background: var(--line-soft); border: 1px solid var(--line-soft);
+}
+.why-item { background: var(--ink); padding: 1.2rem 1.2rem 1.4rem; }
+.why-item h4 { margin: 0 0 .55rem; font-size: 1rem; letter-spacing: -.01em; }
+.why-item p { margin: 0; color: #3a4753; font-size: .92rem; max-width: 40ch; }
+.why-item code { font-size: .8rem; }
+
 /* FAQ */
 details { border-top: 1px solid var(--line-soft); padding: 1.1rem 0; }
 details:last-of-type { border-bottom: 1px solid var(--line-soft); }
@@ -239,6 +284,13 @@ details p { color: var(--muted); margin: .8rem 0 0; max-width: 66ch; }
 .footer ul a:hover { color: var(--accent); }
 .footer-bottom { display: flex; justify-content: space-between; gap: 1rem; border-top: 1px solid var(--line-soft); margin-top: 2.5rem; padding-top: 1.2rem; color: var(--muted); font-size: .68rem; }
 
+/* The code panes hold lines a reader compares, so they stack before the
+   two-column layout starts clipping them. */
+@media (max-width: 1080px) {
+  .code-compare { grid-template-columns: 1fr; }
+  .code-arrow::after { content: "↓"; }
+}
+
 @media (max-width: 980px) {
   .hero-grid, .section-grid { grid-template-columns: 1fr; }
   .spec { max-width: 560px; }
@@ -249,6 +301,7 @@ details p { color: var(--muted); margin: .8rem 0 0; max-width: 66ch; }
   .lesson-visual { grid-column: 2; }
   .merge { grid-template-columns: 1fr; }
   .merge-arrow { transform: rotate(90deg); }
+  .why { grid-template-columns: 1fr; }
   .pair { grid-template-columns: 1fr; }
   .glossary { grid-template-columns: 1fr; }
   .facts { grid-template-columns: 1fr 1fr; }
@@ -266,6 +319,7 @@ details p { color: var(--muted); margin: .8rem 0 0; max-width: 66ch; }
   .facts { grid-template-columns: 1fr; }
   .footer-bottom { flex-direction: column; }
   .terminal pre { font-size: .7rem; white-space: pre-wrap; word-break: break-word; }
+  .code-pane pre { font-size: .68rem; white-space: pre-wrap; word-break: break-word; }
 }
 
 @media (prefers-reduced-motion: reduce) {
