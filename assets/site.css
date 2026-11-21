@@ -242,13 +242,13 @@ h1 {
   font-family: var(--mono); font-size: .7rem; line-height: 1.65; color: #33414c;
 }
 .code-pane code { font: inherit; }
-.c-key { color: var(--accent); font-weight: 700; }
-/* YAML swatches: structure takes the brand accent, data stays ink, comments
-   stay grey. One accent, as everywhere else on the page. */
-.y-key { color: var(--accent); }
-.y-str { color: #1e2a33; }
-.y-num { color: #1e2a33; }
-.y-punct { color: var(--muted); }
+.c-key { color: #0a7f9e; font-weight: 700; }
+/* YAML swatches, close to the docs.deskos.org code blocks: keys cyan, numbers
+   teal, scalars and punctuation dark, comments grey. */
+.y-key { color: #0a7f9e; font-weight: 600; }
+.y-str { color: #2f3b3a; }
+.y-num { color: #2b8f8d; }
+.y-punct { color: #5a6560; }
 .code-arrow {
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   gap: .35rem; color: var(--muted); text-align: center;

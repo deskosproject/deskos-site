@@ -131,22 +131,22 @@
 <span class="c-key">FROM</span> quay.io/centos-bootc/centos-bootc:stream10@sha256:f09b8e56…
 
 <span class="c-dim"># Package groups</span>
-RUN --mount=type=tmpfs,target=/var/lib/rhsm \
+<span class="c-key">RUN</span> --mount=type=tmpfs,target=/var/lib/rhsm \
     … subscription guard …
     &amp;&amp; dnf -y group install 'workstation-product-environment' \
     &amp;&amp; dnf clean all
 
 <span class="c-dim"># Packages</span>
-RUN … dnf -y install 'flatpak' 'git' 'tmux' 'zsh' … \
+<span class="c-key">RUN</span> … dnf -y install 'flatpak' 'git' 'tmux' 'zsh' … \
     &amp;&amp; dnf clean all
 
 <span class="c-dim"># System configuration</span>
-RUN … glib-compile-schemas … &amp;&amp; dconf update \
+<span class="c-key">RUN</span> … glib-compile-schemas … &amp;&amp; dconf update \
     &amp;&amp; systemctl enable 'gdm.service' … \
     &amp;&amp; systemctl mask 'bootc-fetch-apply-updates.timer' …
 
 <span class="c-dim"># Cleanup and bootc validation</span>
-RUN … &amp;&amp; bootc container lint
+<span class="c-key">RUN</span> … &amp;&amp; bootc container lint
 
 <span class="c-key">LABEL</span> org.deskos.platform="centos-stream-10" \
       org.deskos.workstation="deskos-core-centos-stream-10"</code></pre>
