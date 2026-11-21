@@ -86,37 +86,37 @@
     <div class="code-compare">
       <figure class="code-pane">
         <figcaption><span class="mono">Input</span> two resource files</figcaption>
-<pre><code>apiVersion: core.deskos.org/v1alpha1
-kind: Workstation
-metadata:
-  name: deskos-core-centos-stream-10
-spec:
-  platformRef: centos-stream-10
-  profiles:
-    - deskos-core
-    - deskos-gnome
-    - deskos-adwaita
-    - rhel-family
-    - deskos-look
-    - deskos-reference-apps
-    - firefox
-    - deskos-dock
----
-<span class="c-dim"># file: desktop/deskos-core.yaml — policy, not dconf keys.
-# the packages come from profiles/deskos-gnome.yaml.</span>
-apiVersion: desktop.deskos.org/v1alpha1
-kind: GnomeProfile
-metadata:
-  name: deskos-core
-spec:
-  defaults:
-    windows:
-      buttons: [minimize, maximize, close]
-    software:
-      updates: manual
-    session:
-      idle:
-        blankAfter: 10m</code></pre>
+<pre><code><span class="y-key">apiVersion</span>: <span class="y-str">core.deskos.org/v1alpha1</span>
+<span class="y-key">kind</span>: <span class="y-str">Workstation</span>
+<span class="y-key">metadata</span>:
+  <span class="y-key">name</span>: <span class="y-str">deskos-core-centos-stream-10</span>
+<span class="y-key">spec</span>:
+  <span class="y-key">platformRef</span>: <span class="y-str">centos-stream-10</span>
+  <span class="y-key">profiles</span>:
+    <span class="y-punct">-</span> <span class="y-str">deskos-core</span>
+    <span class="y-punct">-</span> <span class="y-str">deskos-gnome</span>
+    <span class="y-punct">-</span> <span class="y-str">deskos-adwaita</span>
+    <span class="y-punct">-</span> <span class="y-str">rhel-family</span>
+    <span class="y-punct">-</span> <span class="y-str">deskos-look</span>
+    <span class="y-punct">-</span> <span class="y-str">deskos-reference-apps</span>
+    <span class="y-punct">-</span> <span class="y-str">firefox</span>
+    <span class="y-punct">-</span> <span class="y-str">deskos-dock</span>
+<span class="y-punct">---</span>
+<span class="c-dim"># file: desktop/deskos-core.yaml — policy, not dconf keys.</span>
+<span class="c-dim"># the packages come from profiles/deskos-gnome.yaml.</span>
+<span class="y-key">apiVersion</span>: <span class="y-str">desktop.deskos.org/v1alpha1</span>
+<span class="y-key">kind</span>: <span class="y-str">GnomeProfile</span>
+<span class="y-key">metadata</span>:
+  <span class="y-key">name</span>: <span class="y-str">deskos-core</span>
+<span class="y-key">spec</span>:
+  <span class="y-key">defaults</span>:
+    <span class="y-key">windows</span>:
+      <span class="y-key">buttons</span>: <span class="y-punct">[</span><span class="y-str">minimize, maximize, close</span><span class="y-punct">]</span>
+    <span class="y-key">software</span>:
+      <span class="y-key">updates</span>: <span class="y-str">manual</span>
+    <span class="y-key">session</span>:
+      <span class="y-key">idle</span>:
+        <span class="y-key">blankAfter</span>: <span class="y-str">10m</span></code></pre>
       </figure>
 
       <div class="code-arrow"><span class="mono">deskosctl render</span></div>
