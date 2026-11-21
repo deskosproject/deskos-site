@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DeskOS — the desktop is compiled</title>
+<title>DeskOS · the desktop is compiled</title>
 <meta name="description" content="DeskOS turns declared intent into a typed plan, a generated Containerfile and one bootable container image pinned by digest.">
 <meta name="theme-color" content="#F1F5F8">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
@@ -78,7 +78,7 @@
       <figure class="split-figure">
         <picture>
           <source srcset="assets/four-layers.webp" type="image/webp">
-          <img src="assets/four-layers.jpg" width="1536" height="864" alt="Four YAML layers — foundation, organization, role and workstation — converge through deskosctl render into one Containerfile">
+          <img src="assets/four-layers.jpg" width="1536" height="864" alt="Four YAML layers (foundation, organization, role and workstation) converge through deskosctl render into one Containerfile">
         </picture>
       </figure>
     </div>
@@ -102,7 +102,7 @@
     <span class="y-punct">-</span> <span class="y-str">firefox</span>
     <span class="y-punct">-</span> <span class="y-str">deskos-dock</span>
 <span class="y-punct">---</span>
-<span class="c-dim"># file: desktop/deskos-core.yaml — policy, not dconf keys.</span>
+<span class="c-dim"># file: desktop/deskos-core.yaml. Policy, not dconf keys.</span>
 <span class="c-dim"># the packages come from profiles/deskos-gnome.yaml.</span>
 <span class="y-key">apiVersion</span>: <span class="y-str">desktop.deskos.org/v1alpha1</span>
 <span class="y-key">kind</span>: <span class="y-str">GnomeProfile</span>
@@ -188,8 +188,8 @@
   <div class="wrap">
     <p class="label"><span class="num">02</span> Platforms</p>
     <h2 class="h2">Same intent, the vendor's base.</h2>
-    <p class="body section-lede">Each platform starts from its own vendor's bootc image — never a
-      derived one — and says what has actually been verified on it. What is not measured is written
+    <p class="body section-lede">Each platform starts from its own vendor's bootc image, never a
+      derived one, and says what has actually been verified on it. What is not measured is written
       as not measured.</p>
 
     <div class="table-wrap" role="region" aria-label="Platform status" tabindex="0">
@@ -246,30 +246,33 @@
     <div class="split">
       <div class="split-text">
         <h2 class="h2">Install once.<br>Update as an image.</h2>
-        <p class="body"><strong>1. Compile your own organizational image.</strong>
-          Write the layers, run <code>deskosctl render</code>, build the generated
-          Containerfile with <code>podman</code>, and move the machine onto the
-          image with <code>bootc</code>. The base stays the vendor's; the packages
-          and the desktop policy are the ones you declared.</p>
-        <p class="light-note mono">deskosctl render → podman build → bootc switch</p>
-        <p class="body"><strong>2. Boot the reference community build.</strong>
-          Pull a published image from <code>quay.io/deskos</code> —
-          <code>deskos-core-centos-stream-10</code>,
-          <code>deskos-core-fedora-45</code> or
-          <code>deskos-core-almalinux-10</code> — and write a disk with
-          <code>bootc-image-builder</code>. Or boot one of the two installer ISOs
-          built from them, both mirrored with a checksum at
-          <a href="https://download.deskos.org/">download.deskos.org</a>:
-          <strong>CentOS Stream 10</strong>, installed and booted in a VM before
-          release, and <strong>Fedora 45</strong>, where a test-only ISO from the
-          same image installed unattended and reached the installed system; the
-          published Fedora ISO asks for the disk and LUKS, so the person
-          installing finishes it. AlmaLinux 10 publishes no installer.</p>
-        <p><a class="btn btn-solid" href="https://docs.deskos.org/install#option-2-build-your-own-then-install-it">Build steps</a>
-          <a class="btn btn-ghost" href="https://download.deskos.org/">Download the CS10 ISO</a>
-          <a class="btn btn-ghost" href="https://download.deskos.org/#fedora-45">Download the Fedora 45 ISO</a></p>
-        <p class="table-note">Before you boot it, check the checksum and the
-          signature: <a href="verify/">verify a download</a>.</p>
+        <p class="body section-lede">Two ways in: compile your own layers, or boot
+          the published build.</p>
+
+        <div class="path">
+          <h3 class="path-title"><span class="path-num">1</span> Compile your own</h3>
+          <p class="body">Write the layers, render, build. The base stays the vendor's.</p>
+          <p class="light-note mono">deskosctl render → podman build → bootc switch</p>
+          <p class="path-link"><a href="https://docs.deskos.org/install#option-2-build-your-own-then-install-it">Build steps</a></p>
+        </div>
+
+        <div class="path">
+          <h3 class="path-title"><span class="path-num">2</span> Boot the reference build</h3>
+          <ul class="path-list">
+            <li><strong>CentOS Stream 10</strong>: installed and booted in a VM before release.</li>
+            <li><strong>Fedora 45</strong>: the published ISO asks for the disk and LUKS; a
+              test-only ISO from the same image installed unattended.</li>
+            <li><strong>AlmaLinux 10</strong>: image only, written with
+              <code>bootc-image-builder</code>.</li>
+          </ul>
+          <p class="path-actions">
+            <a class="btn btn-solid" href="https://download.deskos.org/">Download the CS10 ISO</a>
+            <a class="btn btn-ghost" href="https://download.deskos.org/#fedora-45">Download the Fedora 45 ISO</a>
+          </p>
+        </div>
+
+        <p class="table-note">Check the checksum before you boot it:
+          <a href="verify/">verify a download</a>.</p>
       </div>
       <figure class="split-figure">
         <picture>
@@ -298,7 +301,7 @@
     <details>
       <summary>What does “deterministic” mean?</summary>
       <p>Same resources, same plan and same Containerfile. The image build is not bit-for-bit
-        reproducible yet, because external repositories move — and the docs say so.</p>
+        reproducible yet, because external repositories move, and the docs say so.</p>
     </details>
     <details>
       <summary>Where are the ISOs?</summary>

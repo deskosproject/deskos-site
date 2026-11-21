@@ -256,6 +256,21 @@ h1 {
 .code-arrow .mono { font-size: .62rem; letter-spacing: .1em; text-transform: uppercase; }
 .code-arrow::after { content: "→"; font-size: 1.2rem; color: var(--accent); line-height: 1; }
 
+/* Install: two paths, short lines. */
+.path { border-top: 1px solid var(--line-soft); padding-top: 1.2rem; margin-top: 1.4rem; }
+.path-title { font-size: 1.05rem; margin: 0 0 .5rem; letter-spacing: -.01em; }
+.path-num {
+  color: var(--accent); font-family: var(--mono); font-size: .72rem;
+  letter-spacing: .1em; margin-right: .55rem;
+}
+.path .body { margin-bottom: .5rem; }
+.path .light-note { margin: .2rem 0 .6rem; }
+.path-list { margin: 0 0 .9rem; padding-left: 1.1rem; color: #3a4753; font-size: .95rem; }
+.path-list li { margin: 0 0 .45rem; }
+.path-list code { font-size: .82rem; }
+.path-actions { display: flex; flex-wrap: wrap; gap: .6rem; margin: 0; }
+.path-link { margin: 0; font-size: .95rem; font-weight: 700; }
+
 /* Why not something else */
 .why-title {
   font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
