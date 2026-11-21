@@ -28,3 +28,8 @@ The page lists the three published platforms (CentOS Stream 10, Fedora 45 and
 AlmaLinux 10) and RHEL 10 as private. CentOS Stream 10 and Fedora 45 have a
 published installer ISO; AlmaLinux 10 points at the Core image and
 `bootc-image-builder`.
+
+The hero offers the two adoption paths: compile from `deskosctl render`, or boot
+the reference ISO. `01 Compile` shows the reference workstation as YAML and an
+excerpt of the Containerfile it renders, then the three alternatives it
+replaces.
