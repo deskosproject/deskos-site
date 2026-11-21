@@ -243,6 +243,12 @@ h1 {
 }
 .code-pane code { font: inherit; }
 .c-key { color: var(--accent); font-weight: 700; }
+/* YAML swatches: structure takes the brand accent, data stays ink, comments
+   stay grey. One accent, as everywhere else on the page. */
+.y-key { color: var(--accent); }
+.y-str { color: #1e2a33; }
+.y-num { color: #1e2a33; }
+.y-punct { color: var(--muted); }
 .code-arrow {
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   gap: .35rem; color: var(--muted); text-align: center;
